@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Quiz Generator - Aether Academic</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#e5e0ee",
+                        "on-primary": "#2e009c",
+                        "inverse-surface": "#e5e0ee",
+                        "error-container": "#93000a",
+                        "tertiary": "#ffb77d",
+                        "secondary-container": "#4632a2",
+                        "on-surface-variant": "#c9c4d8",
+                        "surface-dim": "#14121b",
+                        "background": "#14121b",
+                        "on-secondary-fixed-variant": "#4632a2",
+                        "on-primary-fixed": "#1a0063",
+                        "on-tertiary-fixed-variant": "#6e3900",
+                        "tertiary-fixed-dim": "#ffb77d",
+                        "on-secondary": "#2f148c",
+                        "surface": "#14121b",
+                        "tertiary-container": "#d57a1e",
+                        "on-primary-fixed-variant": "#441cc8",
+                        "outline-variant": "#484555",
+                        "on-error": "#690005",
+                        "secondary-fixed-dim": "#c9bfff",
+                        "primary": "#c9bfff",
+                        "on-surface": "#e5e0ee",
+                        "inverse-primary": "#5d3fe0",
+                        "surface-container-highest": "#35333e",
+                        "tertiary-fixed": "#ffdcc3",
+                        "primary-fixed": "#e5deff",
+                        "surface-container-lowest": "#0e0d16",
+                        "on-error-container": "#ffdad6",
+                        "surface-bright": "#3a3842",
+                        "secondary-fixed": "#e5deff",
+                        "primary-fixed-dim": "#c9bfff",
+                        "surface-tint": "#c9bfff",
+                        "outline": "#928ea1",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed": "#1a0063",
+                        "secondary": "#c9bfff",
+                        "on-primary-container": "#28008a",
+                        "surface-variant": "#35333e",
+                        "primary-container": "#917eff",
+                        "on-tertiary-fixed": "#2f1500",
+                        "inverse-on-surface": "#312f39",
+                        "on-secondary-container": "#b7aaff",
+                        "on-tertiary-container": "#432100",
+                        "on-tertiary": "#4d2600",
+                        "surface-container-low": "#1c1a24",
+                        "surface-container": "#201e28",
+                        "surface-container-high": "#2b2932"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-tablet": "32px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "unit": "8px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "label-sm": ["13px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md flex h-screen overflow-hidden antialiased">
+<nav class="hidden md:flex flex-col h-full py-8 px-4 gap-6 fixed left-0 top-0 w-64 bg-surface-container-low border-r border-outline-variant shadow-lg z-40">
+        <!-- Header -->
+        <div class="flex items-center gap-3 px-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-primary-container/20 flex items-center justify-center border border-outline-variant/30">
+                <img alt="Academic Workspace Logo" class="w-full h-full object-cover rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaAk6aGqMUjlQXCuGtP45u2kqeomqxkG2m9mzE72hYtkzA5TOhSNaUHqqsa21_0TCXW1fhHKyZQjwHwW-R6W_TkEmlwGhAZFrHZ0-49YSaBSLy2zL8x0NYi1OQ6RzjYPcQkyMrJ8Nmp59qVVjrTluqX0l9I39GUeYQViodkg9ArjIPMsDV8qnLsZ9wxuf9wgW_bjkptYIXcxrxkaWsvPJfEcm56natlUOMozRMH6t2CY6nLZUYnoNknqUoOLMlmIspSJkAu1v9gUBX"/>
+            </div>
+            <div>
+                <a href="homepage_ultranote.ai_updated_theme.html" class="font-headline-md text-headline-md text-on-surface text-sm tracking-tight hover:text-primary transition-colors">Aether Academic</a>
+                <p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Workspace</p>
+            </div>
+        </div>
+        <!-- CTA -->
+        <div class="px-2 mb-4">
+            <button id="newResearchBtn" class="w-full bg-primary text-on-primary font-label-sm text-label-sm py-3 rounded-lg hover:bg-primary/90 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-sm flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">add</span>
+                New Research
+            </button>
+        </div>
+        <!-- Main Navigation -->
+        <ul class="flex-1 flex flex-col gap-2">
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="workspace_ultranote.ai_refined_theme.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+                    Workspace
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="ai_notes_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="description">description</span>
+                    Notes
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary/10 text-primary border-r-2 border-primary transition-all duration-150 font-label-sm text-label-sm" href="quiz_generator_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px] icon-fill" data-icon="quiz">quiz</span>
+                    Quizzes
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="flashcards_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="style">style</span>
+                    Flashcards
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all text-sm" href="collaborative_notes_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]">library_books</span>
+                    Library
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all text-sm" href="mind_maps_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]">account_tree</span>
+                    Mind Maps
+                </a>
+            </li>
+        </ul>
+        <!-- Footer Navigation -->
+        <ul class="flex flex-col gap-1 border-t border-outline-variant pt-4">
+            <li>
+                <a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="support_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[18px]" data-icon="help">help</span>
+                    Help
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="homepage_ultranote.ai_updated_theme.html">
+                    <span class="material-symbols-outlined text-[18px]" data-icon="logout">logout</span>
+                    Logout
+                </a>
+            </li>
+        </ul>
+    </nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 ml-64 flex flex-col h-screen overflow-hidden relative">
+<!-- Ambient Background Nebula Glows -->
+<div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary-container/10 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-secondary-container/10 rounded-full blur-[150px] pointer-events-none"></div>
+<!-- Global TopNavBar -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-margin-desktop h-16 bg-surface border-b border-outline-variant shadow-sm">
+        <div class="flex-1 flex items-center">
+            <!-- Search Placeholder -->
+            <div class="flex items-center gap-2 text-on-surface-variant w-64 px-4 py-2 rounded-full bg-surface-container border border-outline-variant focus-within:border-primary focus-within:text-on-surface transition-colors">
+                <span class="material-symbols-outlined text-sm">search</span>
+                <input class="bg-transparent border-none outline-none text-sm w-full font-body-md text-on-surface placeholder:text-on-surface-variant focus:ring-0 p-0" placeholder="Search knowledge base..." type="text"/>
+            </div>
+        </div>
+        <!-- Mobile Brand -->
+        <a href="homepage_ultranote.ai_updated_theme.html" class="md:hidden font-headline-md text-headline-md font-semibold text-on-surface hover:text-primary transition-colors">
+            Aether Academic
+        </a>
+        <div class="flex-1 flex items-center justify-end gap-4">
+            <button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+                <span class="material-symbols-outlined">notifications</span>
+            </button>
+            <button class="text-on-surface-variant hover:text-primary transition-colors duration-200" onclick="window.location.href='settings_ultranote.ai.html'">
+                <span class="material-symbols-outlined">settings</span>
+            </button>
+            <div class="w-8 h-8 rounded-full bg-surface-container overflow-hidden border border-outline-variant cursor-pointer ml-2">
+                <img alt="Student researcher profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV2f0Od8C-O6m-MRvKvRNH5fny_zpAUnrm_NVJIPmtKHYXQbvjUgyYC-TX9TL-kA4WknAss0q09MPFLQPot50AVswYmLZ3wlWtPRcELh1fKp0YLgrMB53A4M3Xlqp6XYz-MSBwBOKMt_XxkckcJsWeovaYDTqEVAQu-W5TnA5F3oPEwBjvVomAVNsIJhW2aD7mkDWMhXc3VMLkK-R661A1OR5D76ZPJtEpOxgmfDCR52KV00BC2Z16LAdXHcMeIcrnJ90mpskgV21D"/>
+            </div>
+        </div>
+    </header>
+<!-- Page Content Canvas -->
+<main class="flex-1 overflow-y-auto p-margin-desktop relative z-10">
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Page Title Area (Spans full width) -->
+<div class="col-span-1 md:col-span-12 mb-4">
+<h2 class="font-display-lg text-display-lg text-on-surface">Generate Quiz</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2 max-w-2xl">Configure your parameters below to synthesize a new assessment based on your knowledge base.</p>
+</div>
+<!-- Configuration Sidebar Panel (Left) -->
+<div class="col-span-1 md:col-span-4 flex flex-col gap-6">
+<div class="bg-white/[0.03] backdrop-blur-[20px] border border-white/10 rounded-xl p-6 shadow-lg flex flex-col gap-6 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-surface-variant to-surface-variant"></div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-2">Source Material</label>
+<div id="quizUploadZone" class="w-full bg-surface-container-low/50 border-2 border-dashed border-outline-variant/50 rounded-xl p-4 flex flex-col items-center justify-center hover:border-primary transition-all group cursor-pointer relative overflow-hidden" onclick="document.getElementById('quiz-file').click()">
+    <input type="file" id="quiz-file" class="hidden" onchange="handleQuizUpload(this)">
+    <span class="material-symbols-outlined text-primary/70 text-2xl group-hover:scale-110 transition-transform" id="quiz-upload-icon">upload_file</span>
+    <p class="font-label-sm text-[11px] text-on-surface-variant mt-2 text-center" id="quiz-upload-text">Upload PDF/Text to synthesize quiz</p>
+    <div id="quiz-progress-bar" class="absolute bottom-0 left-0 h-1 bg-primary w-0 transition-all duration-300"></div>
+</div>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-2">Difficulty Level</label>
+<div class="relative">
+<select id="quizDifficulty" class="w-full appearance-none bg-surface-container-low/50 border-b border-white/10 py-3 pl-4 pr-10 text-on-surface focus:outline-none focus:border-primary focus:bg-surface-container/50 transition-all font-body-md text-body-md">
+<option class="bg-surface text-on-surface" value="easy">Easy</option>
+<option class="bg-surface text-on-surface" selected="" value="medium">Medium</option>
+<option class="bg-surface text-on-surface" value="hard">Hard</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">expand_more</span>
+</div>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-2">Number of Questions</label>
+<div class="flex items-center justify-between bg-surface-container-low/50 border-b border-white/10 px-4 py-2">
+<button onclick="decrementCount()" class="p-1 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">remove</span></button>
+<input id="quizQuestionCount" class="w-16 bg-transparent text-center text-on-surface font-headline-md text-headline-md focus:outline-none" max="25" min="1" type="number" value="5"/>
+<button onclick="incrementCount()" class="p-1 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">add</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Preview Main Area (Right) -->
+<div class="col-span-1 md:col-span-8 flex flex-col gap-8">
+<!-- Question Card Container -->
+<div id="quizPreviewArea" class="bg-white/[0.06] backdrop-blur-[40px] border border-white/10 rounded-xl relative shadow-[0_0_40px_rgba(145,126,255,0.08)] flex flex-col overflow-hidden min-h-[400px] p-8 justify-center">
+    <div class="text-center py-12 opacity-60">
+        <span class="material-symbols-outlined text-5xl mb-4 text-primary">psychology</span>
+        <h3 class="text-lg font-medium text-on-surface mb-2">Configure and Generate Assessment</h3>
+        <p class="text-sm max-w-md mx-auto text-on-surface-variant">Aether AI will dynamically draft an academic evaluation using active vector context from your sources.</p>
+    </div>
+</div>
+<!-- Primary Action Area -->
+<div class="flex justify-end gap-3 mt-4">
+    <button id="generateQuizBtn" class="bg-primary-container text-on-primary-container hover:bg-primary hover:text-on-primary font-label-sm text-label-sm py-4 px-8 rounded-lg shadow-[0_0_20px_rgba(145,126,255,0.2)] transition-all duration-300 flex items-center gap-3 group">
+        <span class="material-symbols-outlined text-[20px] group-hover:rotate-12 transition-transform">model_training</span>
+        <span>Generate Assessment</span>
+    </button>
+</div>
+</div>
+
+<script src="aether-api.js"></script>
+<script>
+    AetherAuth.requireAuth();
+
+    const workspaceId = AetherAuth.getWorkspaceId();
+    let currentQuiz = null;
+    let selectedSourceId = null;
+
+    function incrementCount() {
+        const input = document.getElementById('quizQuestionCount');
+        input.value = Math.min(25, parseInt(input.value) + 1);
+    }
+
+    function decrementCount() {
+        const input = document.getElementById('quizQuestionCount');
+        input.value = Math.max(1, parseInt(input.value) - 1);
+    }
+
+    async function handleQuizUpload(input) {
+        if (!input.files || input.files.length === 0) return;
+        const file = input.files[0];
+        const text = document.getElementById('quiz-upload-text');
+        const bar = document.getElementById('quiz-progress-bar');
+        const icon = document.getElementById('quiz-upload-icon');
+
+        text.innerText = "Uploading " + file.name + "...";
+        icon.innerText = "upload_file";
+        icon.parentElement.classList.add('animate-pulse');
+        bar.style.width = "40%";
+
+        try {
+            const data = await AetherAPI.uploadFile(workspaceId, file, (prog) => {
+                bar.style.width = `${prog * 0.4}%`;
+            });
+            bar.style.width = "70%";
+            text.innerText = "Synthesizing text...";
+            
+            await AetherAPI.pollSourceReady(data.id);
+            selectedSourceId = data.id;
+
+            bar.style.width = "100%";
+            text.innerText = file.name + " Ready";
+            icon.innerText = "check_circle";
+            icon.parentElement.classList.remove('animate-pulse');
+            icon.parentElement.classList.add('border-primary');
+            showToast('Document uploaded and prepared for quiz generation!', 'success');
+        } catch (e) {
+            showToast('Failed to ingest document: ' + e.message, 'error');
+            text.innerText = "Ingestion failed";
+            icon.innerText = "error";
+            icon.parentElement.classList.remove('animate-pulse');
+        }
+    }
+
+    document.getElementById('generateQuizBtn').onclick = async function() {
+        const btn = this;
+        const restore = setButtonLoading(btn, 'Generating Assessment...');
+        const preview = document.getElementById('quizPreviewArea');
+
+        preview.innerHTML = `
+            <div class="flex flex-col items-center justify-center py-12 gap-4">
+                <span class="material-symbols-outlined text-4xl text-primary animate-spin">refresh</span>
+                <p class="text-sm text-on-surface-variant animate-pulse">Aether Academic is drafting challenges and formulating grading schemes...</p>
+            </div>
+        `;
+
+        try {
+            const difficulty = document.getElementById('quizDifficulty').value;
+            const count = parseInt(document.getElementById('quizQuestionCount').value) || 5;
+
+            currentQuiz = await AetherAPI.generateQuiz(workspaceId, selectedSourceId, difficulty, count);
+            renderQuizQuestions();
+            showToast('Quiz compiled successfully!', 'success');
+        } catch (e) {
+            showToast('Quiz generation failed: ' + e.message, 'error');
+            preview.innerHTML = `
+                <div class="text-center py-12 opacity-60">
+                    <span class="material-symbols-outlined text-5xl mb-4 text-red-400">warning</span>
+                    <h3 class="text-lg font-medium text-on-surface mb-2">Compilation Failed</h3>
+                    <p class="text-sm max-w-md mx-auto text-on-surface-variant">${e.message}</p>
+                </div>
+            `;
+        } finally {
+            restore();
+        }
+    };
+
+    function renderQuizQuestions() {
+        const preview = document.getElementById('quizPreviewArea');
+        if (!currentQuiz || !currentQuiz.questions || currentQuiz.questions.length === 0) return;
+
+        let html = `
+            <div class="space-y-8">
+                <div class="border-b border-white/10 pb-4 mb-6">
+                    <h3 class="text-xl font-bold text-on-surface">${currentQuiz.title}</h3>
+                    <p class="text-xs text-on-surface-variant mt-1 uppercase tracking-wider font-semibold">Difficulty: ${currentQuiz.difficulty} | Questions: ${currentQuiz.questions.length}</p>
+                </div>
+                <form id="quizSubmitForm" class="space-y-8">
+        `;
+
+        currentQuiz.questions.forEach((q, idx) => {
+            html += `
+                <div class="space-y-4 border-b border-white/5 pb-6">
+                    <div class="flex justify-between items-start gap-4">
+                        <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs border border-primary/20 shrink-0">Question ${idx + 1}</span>
+                        <p class="text-sm font-medium text-on-surface flex-1">${q.question}</p>
+                    </div>
+            `;
+
+            if (q.question_type === 'mcq' && q.options) {
+                html += `<div class="grid grid-cols-1 gap-2.5 mt-2 pl-4">`;
+                Object.entries(q.options).forEach(([key, val]) => {
+                    html += `
+                        <label class="flex items-center gap-3 p-3.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 cursor-pointer transition-all duration-200 group">
+                            <input type="radio" name="q_${q.id}" value="${key}" class="text-primary focus:ring-primary bg-surface border-white/10">
+                            <span class="text-sm text-on-surface">${key}) ${val}</span>
+                        </label>
+                    `;
+                });
+                html += `</div>`;
+            } else if (q.question_type === 'true_false') {
+                html += `
+                    <div class="flex gap-4 pl-4 mt-2">
+                        <label class="flex items-center gap-3 px-6 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 cursor-pointer transition-all">
+                            <input type="radio" name="q_${q.id}" value="True" class="text-primary focus:ring-primary bg-surface border-white/10">
+                            <span class="text-sm font-semibold">True</span>
+                        </label>
+                        <label class="flex items-center gap-3 px-6 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 cursor-pointer transition-all">
+                            <input type="radio" name="q_${q.id}" value="False" class="text-primary focus:ring-primary bg-surface border-white/10">
+                            <span class="text-sm font-semibold">False</span>
+                        </label>
+                    </div>
+                `;
+            } else {
+                // Short answer input
+                html += `
+                    <div class="pl-4 mt-2">
+                        <textarea name="q_${q.id}" class="w-full bg-surface-container border border-outline-variant rounded-xl p-4 text-on-surface focus:border-primary outline-none transition-all text-sm h-24 placeholder:text-on-surface-variant/40" placeholder="Type your structured explanation here..."></textarea>
+                    </div>
+                `;
+            }
+
+            html += `</div>`;
+        });
+
+        html += `
+                <div class="pt-4 flex justify-end">
+                    <button type="submit" id="submitQuizBtn" class="bg-primary text-on-primary font-semibold py-3 px-8 rounded-xl hover:bg-primary-container transition-all flex items-center gap-2">
+                        <span class="material-symbols-outlined">done_all</span> Submit Evaluation
+                    </button>
+                </div>
+            </form>
+        </div>`;
+
+        preview.innerHTML = html;
+
+        document.getElementById('quizSubmitForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submitQuizBtn');
+            const restore = setButtonLoading(btn, 'Grading assessment...');
+
+            const formData = new FormData(e.target);
+            const answers = {};
+            currentQuiz.questions.forEach(q => {
+                answers[q.id] = formData.get(`q_${q.id}`) || '';
+            });
+
+            try {
+                const grading = await AetherAPI.submitQuizAttempt(currentQuiz.id, answers);
+                renderQuizResults(grading);
+                showToast(`Quiz completed! Score: ${grading.score}%`, 'success');
+            } catch (err) {
+                showToast('Failed to grade quiz: ' + err.message, 'error');
+            } finally {
+                restore();
+            }
+        });
+    }
+
+    function renderQuizResults(attempt) {
+        const preview = document.getElementById('quizPreviewArea');
+        
+        let html = `
+            <div class="space-y-8">
+                <div class="bg-primary/10 border border-primary/20 rounded-2xl p-6 text-center shadow-lg shadow-primary/5">
+                    <span class="material-symbols-outlined text-4xl text-primary mb-2">school</span>
+                    <h3 class="text-2xl font-extrabold text-on-surface">Evaluation Finalized</h3>
+                    <p class="text-sm text-on-surface-variant mt-1">Score: <strong class="text-primary text-lg">${attempt.score}%</strong> (${attempt.correct}/${attempt.total} correct)</p>
+                </div>
+                <div class="space-y-6">
+        `;
+
+        attempt.results.forEach((res, idx) => {
+            const isCorrect = res.is_correct;
+            const borderClass = isCorrect ? 'border-green-500/20 bg-green-500/5' : 'border-red-500/20 bg-red-500/5';
+            const badgeClass = isCorrect ? 'bg-green-500/10 text-green-400 border-green-500/20' : 'bg-red-500/10 text-red-400 border-red-500/20';
+
+            html += `
+                <div class="p-6 rounded-2xl border ${borderClass} space-y-4">
+                    <div class="flex justify-between items-start gap-4">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold border ${badgeClass}">Question ${idx + 1} — ${isCorrect ? 'Correct' : 'Incorrect'}</span>
+                        <span class="text-xs text-on-surface-variant font-semibold">Awarded: ${res.score} pts</span>
+                    </div>
+                    <p class="text-sm font-semibold text-on-surface">${res.question}</p>
+                    <div class="text-xs space-y-2 pt-2 border-t border-white/5">
+                        <p class="text-on-surface-variant"><strong>Your Answer:</strong> ${res.user_answer || '<span class="italic opacity-60">No Answer</span>'}</p>
+                        <p class="text-primary"><strong>Correct Answer:</strong> ${res.correct_answer}</p>
+                        ${res.feedback ? `<p class="text-amber-400 italic"><strong>Feedback:</strong> ${res.feedback}</p>` : ''}
+                        ${res.explanation ? `<p class="text-on-surface-variant/80"><strong>Explanation:</strong> ${res.explanation}</p>` : ''}
+                    </div>
+                </div>
+            `;
+        });
+
+        html += `
+                </div>
+                <div class="pt-6 flex justify-end gap-3 border-t border-white/10">
+                    <button onclick="window.location.reload()" class="bg-surface-container border border-outline-variant text-on-surface px-6 py-3 rounded-xl hover:bg-surface-container-high transition-all text-sm font-semibold">Take Another Quiz</button>
+                </div>
+            </div>
+        `;
+
+        preview.innerHTML = html;
+    }
+</script>
+
+<!-- Global standard Research Modal -->
+<div id="newResearchModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-surface-dim/80 backdrop-blur-sm" id="modalOverlay"></div>
+    <div class="relative bg-surface-container-low border border-outline-variant w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+        <div class="p-6 border-b border-outline-variant flex justify-between items-center">
+            <h3 class="font-headline-md text-headline-md text-on-surface">Ingest Web Resource</h3>
+            <button id="closeModal" class="text-on-surface-variant hover:text-on-surface transition-colors">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="p-6 space-y-4">
+            <div>
+                <label class="block font-label-sm text-label-sm text-on-surface-variant mb-2">Resource Name (Optional)</label>
+                <input type="text" id="ingestName" class="w-full bg-surface-container border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="e.g., Stanford Quantum Computing Lecture...">
+            </div>
+            <div>
+                <label class="block font-label-sm text-label-sm text-on-surface-variant mb-2">URL or YouTube Link</label>
+                <input type="url" id="ingestUrl" class="w-full bg-surface-container border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="https://youtube.com/watch?v=...">
+            </div>
+        </div>
+        <div class="p-6 bg-surface-container-highest/30 flex justify-end gap-3">
+            <button class="px-6 py-2 rounded-lg text-on-surface-variant font-label-sm text-label-sm hover:text-on-surface" id="cancelModal">Cancel</button>
+            <button class="px-6 py-2 rounded-lg bg-primary text-on-primary font-label-sm text-label-sm hover:bg-primary/90 transition-colors" id="createResearch">Synthesize URL</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById('newResearchModal');
+    const openBtn = document.getElementById('newResearchBtn');
+    const closeBtn = document.getElementById('closeModal');
+    const cancelBtn = document.getElementById('cancelModal');
+    const overlay = document.getElementById('modalOverlay');
+    const createBtn = document.getElementById('createResearch');
+
+    const toggleModal = (show) => {
+        modal.classList.toggle('hidden', !show);
+        if(show) document.body.style.overflow = 'hidden';
+        else document.body.style.overflow = 'auto';
+    };
+
+    if (openBtn) openBtn.onclick = () => toggleModal(true);
+    if (closeBtn) closeBtn.onclick = () => toggleModal(false);
+    if (cancelBtn) cancelBtn.onclick = () => toggleModal(false);
+    if (overlay) overlay.onclick = () => toggleModal(false);
+
+    if (createBtn) {
+        createBtn.onclick = async () => {
+            const nameInput = document.getElementById('ingestName');
+            const urlInput = document.getElementById('ingestUrl');
+            const url = urlInput.value.trim();
+            const name = nameInput.value.trim();
+
+            if (!url) {
+                showToast('Please enter a valid URL', 'warning');
+                return;
+            }
+
+            createBtn.disabled = true;
+            const restore = setButtonLoading(createBtn, 'Ingesting...');
+
+            try {
+                const data = await AetherAPI.ingestURL(workspaceId, url, name || null);
+                showToast('Web resource added! Ingesting content...', 'info');
+                toggleModal(false);
+                urlInput.value = '';
+                nameInput.value = '';
+                
+                await AetherAPI.pollSourceReady(data.id);
+                showToast(`Ingestion completed! Preparing new assessment...`, 'info');
+                selectedSourceId = data.id;
+                document.getElementById('generateQuizBtn').click();
+            } catch (e) {
+                showToast('Failed to ingest URL: ' + e.message, 'error');
+            } finally {
+                restore();
+            }
+        };
+    }
+</script>
+</body></html>

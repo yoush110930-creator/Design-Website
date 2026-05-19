@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aether Academic - Workspace</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#e5e0ee",
+                        "on-primary": "#2e009c",
+                        "inverse-surface": "#e5e0ee",
+                        "error-container": "#93000a",
+                        "tertiary": "#ffb77d",
+                        "secondary-container": "#4632a2",
+                        "on-surface-variant": "#c9c4d8",
+                        "surface-dim": "#14121b",
+                        "background": "#14121b",
+                        "on-secondary-fixed-variant": "#4632a2",
+                        "on-primary-fixed": "#1a0063",
+                        "on-tertiary-fixed-variant": "#6e3900",
+                        "tertiary-fixed-dim": "#ffb77d",
+                        "on-secondary": "#2f148c",
+                        "surface": "#14121b",
+                        "tertiary-container": "#d57a1e",
+                        "on-primary-fixed-variant": "#441cc8",
+                        "outline-variant": "#484555",
+                        "on-error": "#690005",
+                        "secondary-fixed-dim": "#c9bfff",
+                        "primary": "#c9bfff",
+                        "on-surface": "#e5e0ee",
+                        "inverse-primary": "#5d3fe0",
+                        "surface-container-highest": "#35333e",
+                        "tertiary-fixed": "#ffdcc3",
+                        "primary-fixed": "#e5deff",
+                        "surface-container-lowest": "#0e0d16",
+                        "on-error-container": "#ffdad6",
+                        "surface-bright": "#3a3842",
+                        "secondary-fixed": "#e5deff",
+                        "primary-fixed-dim": "#c9bfff",
+                        "surface-tint": "#c9bfff",
+                        "outline": "#928ea1",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed": "#1a0063",
+                        "secondary": "#c9bfff",
+                        "on-primary-container": "#28008a",
+                        "surface-variant": "#35333e",
+                        "primary-container": "#917eff",
+                        "on-tertiary-fixed": "#2f1500",
+                        "inverse-on-surface": "#312f39",
+                        "on-secondary-container": "#b7aaff",
+                        "on-tertiary-container": "#432100",
+                        "on-tertiary": "#4d2600",
+                        "surface-container-low": "#1c1a24",
+                        "surface-container": "#201e28",
+                        "surface-container-high": "#2b2932"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-tablet": "32px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "unit": "8px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "label-sm": ["13px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .ai-progress-gradient {
+            background: linear-gradient(90deg, transparent, #c9bfff, #917eff, transparent);
+            background-size: 200% 100%;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        @keyframes progress-animation {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        .animate-progress {
+            animation: progress-animation 3s ease-in-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex selection:bg-primary/30">
+<!-- SideNavBar (Predicted Component) -->
+<nav class="hidden md:flex flex-col h-full py-8 px-4 gap-6 fixed left-0 top-0 w-64 bg-surface-container-low border-r border-outline-variant shadow-lg z-40">
+        <!-- Header -->
+        <div class="flex items-center gap-3 px-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-primary-container/20 flex items-center justify-center border border-outline-variant/30">
+                <img alt="Academic Workspace Logo" class="w-full h-full object-cover rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaAk6aGqMUjlQXCuGtP45u2kqeomqxkG2m9mzE72hYtkzA5TOhSNaUHqqsa21_0TCXW1fhHKyZQjwHwW-R6W_TkEmlwGhAZFrHZ0-49YSaBSLy2zL8x0NYi1OQ6RzjYPcQkyMrJ8Nmp59qVVjrTluqX0l9I39GUeYQViodkg9ArjIPMsDV8qnLsZ9wxuf9wgW_bjkptYIXcxrxkaWsvPJfEcm56natlUOMozRMH6t2CY6nLZUYnoNknqUoOLMlmIspSJkAu1v9gUBX"/>
+            </div>
+            <div>
+                <a href="homepage_ultranote.ai_updated_theme.html" class="font-headline-md text-headline-md text-on-surface text-sm tracking-tight hover:text-primary transition-colors">Aether Academic</a>
+                <p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Workspace</p>
+            </div>
+        </div>
+        <!-- CTA -->
+        <div class="px-2 mb-4">
+            <button id="newResearchBtn" class="w-full bg-primary text-on-primary font-label-sm text-label-sm py-3 rounded-lg hover:bg-primary/90 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-sm flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">add</span>
+                New Research
+            </button>
+        </div>
+        <!-- Main Navigation -->
+        <ul class="flex-1 flex flex-col gap-2">
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all text-sm" href="workspace_ultranote.ai_refined_theme.html">
+                    <span class="material-symbols-outlined text-[20px]">dashboard</span>
+                    Workspace
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary/10 text-primary border-r-2 border-primary transition-all text-sm" href="ai_notes_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]">description</span>
+                    Notes
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all text-sm" href="quiz_generator_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]">quiz</span>
+                    Quizzes
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="flashcards_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="style">style</span>
+                    Flashcards
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all text-sm" href="collaborative_notes_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]">library_books</span>
+                    Library
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all text-sm" href="mind_maps_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]">account_tree</span>
+                    Mind Maps
+                </a>
+            </li>
+        </ul>
+        <!-- Footer Navigation -->
+        <ul class="flex flex-col gap-1 border-t border-outline-variant pt-4">
+            <li>
+                <a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="support_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[18px]" data-icon="help">help</span>
+                    Help
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="homepage_ultranote.ai_updated_theme.html">
+                    <span class="material-symbols-outlined text-[18px]" data-icon="logout">logout</span>
+                    Logout
+                </a>
+            </li>
+        </ul>
+    </nav>
+<!-- Main Content Area -->
+<div class="ml-64 flex-1 flex flex-col min-h-screen">
+<!-- TopNavBar (Predicted Component) -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-margin-desktop h-16 bg-surface border-b border-outline-variant shadow-sm">
+        <div class="flex-1 flex items-center">
+            <!-- Search Placeholder -->
+            <div class="flex items-center gap-2 text-on-surface-variant w-64 px-4 py-2 rounded-full bg-surface-container border border-outline-variant focus-within:border-primary focus-within:text-on-surface transition-colors">
+                <span class="material-symbols-outlined text-sm">search</span>
+                <input class="bg-transparent border-none outline-none text-sm w-full font-body-md text-on-surface placeholder:text-on-surface-variant focus:ring-0 p-0" placeholder="Search knowledge base..." type="text"/>
+            </div>
+        </div>
+        <!-- Mobile Brand -->
+        <a href="homepage_ultranote.ai_updated_theme.html" class="md:hidden font-headline-md text-headline-md font-semibold text-on-surface hover:text-primary transition-colors">
+            Aether Academic
+        </a>
+        <div class="flex-1 flex items-center justify-end gap-4">
+            <button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+                <span class="material-symbols-outlined">notifications</span>
+            </button>
+            <button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+                <span class="material-symbols-outlined">settings</span>
+            </button>
+            <div class="w-8 h-8 rounded-full bg-surface-container overflow-hidden border border-outline-variant cursor-pointer ml-2">
+                <img alt="Student researcher profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV2f0Od8C-O6m-MRvKvRNH5fny_zpAUnrm_NVJIPmtKHYXQbvjUgyYC-TX9TL-kA4WknAss0q09MPFLQPot50AVswYmLZ3wlWtPRcELh1fKp0YLgrMB53A4M3Xlqp6XYz-MSBwBOKMt_XxkckcJsWeovaYDTqEVAQu-W5TnA5F3oPEwBjvVomAVNsIJhW2aD7mkDWMhXc3VMLkK-R661A1OR5D76ZPJtEpOxgmfDCR52KV00BC2Z16LAdXHcMeIcrnJ90mpskgV21D"/>
+            </div>
+        </div>
+    </header>
+<!-- Split Screen Canvas -->
+<main class="flex-1 grid grid-cols-12 gap-8 p-8 h-[calc(100vh-4rem)]">
+<!-- Left Side: Upload Panel -->
+<section class="col-span-4 glass-panel rounded-xl p-6 flex flex-col h-full relative overflow-hidden">
+<!-- AI Progress Indicator (Inactive state, subtle pulse) -->
+<div class="absolute top-0 left-0 w-full h-[2px] ai-progress-gradient opacity-30"></div>
+<h2 class="font-headline-md text-[20px] text-on-surface mb-6">Source Material</h2>
+<div class="flex flex-col gap-6 overflow-y-auto pr-2 pb-4 scrollbar-hide">
+<!-- File Dropzone -->
+<div id="upload-zone" class="border border-dashed border-white/20 hover:border-primary/50 bg-white/[0.02] rounded-lg p-8 flex flex-col items-center justify-center text-center transition-colors cursor-pointer group relative overflow-hidden" onclick="document.getElementById('file-input').click()">
+                        <input type="file" id="file-input" class="hidden" onchange="handleFileUpload(this.files)">
+                        <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
+                            <span class="material-symbols-outlined text-primary text-[28px]" id="upload-icon">upload_file</span>
+                        </div>
+                        <p class="font-body-md text-on-surface font-medium mb-1" id="upload-title">Drag & drop PDFs</p>
+                        <p class="font-label-sm text-on-surface-variant text-label-sm" id="upload-desc">or click to browse local files</p>
+                        <div id="progress-container" class="hidden w-full mt-4 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div id="progress-bar" class="h-full bg-primary rounded-full"></div>
+                        </div>
+                    </div>
+<div class="relative flex items-center py-2">
+<div class="flex-grow border-t border-white/10"></div>
+<span class="flex-shrink-0 mx-4 text-on-surface-variant font-label-sm text-[11px] uppercase tracking-wider">or import</span>
+<div class="flex-grow border-t border-white/10"></div>
+</div>
+<!-- Input: URL -->
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">link</span> Web URL
+                        </label>
+<input id="noteUrl" class="bg-white/5 border-b border-x-0 border-t-0 border-white/10 focus:border-primary focus:ring-0 px-3 py-2 text-on-surface font-body-md placeholder:text-on-surface-variant/50 w-full transition-colors rounded-t-md" placeholder="https://..." type="text"/>
+</div>
+<!-- Input: YouTube -->
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">smart_display</span> YouTube Video
+                        </label>
+<input id="noteYt" class="bg-white/5 border-b border-x-0 border-t-0 border-white/10 focus:border-primary focus:ring-0 px-3 py-2 text-on-surface font-body-md placeholder:text-on-surface-variant/50 w-full transition-colors rounded-t-md" placeholder="Paste YouTube link for transcript extraction..." type="text"/>
+</div>
+<!-- Input: Raw Text -->
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">notes</span> Raw Text
+                        </label>
+<textarea id="noteRawText" class="bg-white/5 border border-white/10 focus:border-primary focus:ring-0 p-3 text-on-surface font-body-md placeholder:text-on-surface-variant/50 w-full transition-colors rounded-md resize-none" placeholder="Paste unformatted text here..." rows="4"></textarea>
+</div>
+</div>
+<div class="mt-auto pt-4 border-t border-white/5">
+<button class="w-full bg-primary-container text-on-primary-container font-label-sm text-label-sm py-3.5 rounded-lg flex items-center justify-center gap-2 hover:bg-primary transition-colors font-semibold" onclick="synthesizeNotesFromInput()">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+                        Synthesize Notes
+                    </button>
+</div>
+</section>
+<!-- Right Side: Note Viewer Canvas -->
+<section class="col-span-8 bg-surface-container-low rounded-xl border border-white/5 flex flex-col h-full overflow-hidden relative shadow-lg">
+<!-- Active AI Generation State -->
+<div class="absolute top-0 left-0 w-full h-[3px] ai-progress-gradient animate-pulse shadow-[0_0_20px_rgba(201,191,255,0.4)]"></div>
+<div class="p-10 overflow-y-auto h-full scrollbar-hide">
+<!-- Document Header -->
+<header class="mb-10">
+<div class="flex items-center gap-2 mb-4">
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full font-label-sm text-[12px]">Neuroscience</span>
+<span class="bg-white/5 text-on-surface-variant px-3 py-1 rounded-full font-label-sm text-[12px]">Extracted from PDF</span>
+</div>
+<h1 class="font-display-lg-mobile text-[36px] text-on-surface leading-tight mb-4">Synaptic Plasticity and Memory Consolidation</h1>
+<p class="font-body-lg text-on-surface-variant text-[18px] max-w-3xl">An analysis of the molecular mechanisms underlying long-term potentiation (LTP) and its role in forming enduring memories in the mammalian hippocampus.</p>
+</header>
+<!-- Summary Card (Glass) -->
+<div class="glass-panel rounded-xl p-6 mb-10 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="flex items-start gap-4 relative z-10">
+<div class="mt-1">
+<span class="material-symbols-outlined text-primary text-[24px]">lightbulb</span>
+</div>
+<div>
+<h3 class="font-headline-md text-[18px] text-on-surface mb-2">Core Synthesis</h3>
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+                                    Memory consolidation relies heavily on synaptic plasticity, specifically long-term potentiation (LTP). The process requires NMDA receptor activation, calcium influx, and subsequent signaling cascades involving CaMKII and CREB, ultimately leading to structural changes at dendritic spines.
+                                </p>
+</div>
+</div>
+</div>
+<!-- Structured Content -->
+<article class="space-y-10 max-w-3xl">
+<!-- Section 1 -->
+<section>
+<h2 class="font-headline-md text-[24px] text-on-surface mb-4 flex items-center gap-2 border-b border-white/10 pb-2">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">schema</span>
+                                Molecular Mechanisms of LTP
+                            </h2>
+<p class="font-body-md text-on-surface-variant mb-4">
+                                The induction of LTP at Schaffer collateral-CA1 synapses is a classic model for learning. It is initiated by the release of glutamate and the concurrent depolarization of the postsynaptic membrane.
+                            </p>
+<ul class="space-y-3 font-body-md text-on-surface-variant list-none pl-2 border-l-2 border-white/10">
+<li class="pl-4 relative before:content-[''] before:absolute before:left-[-5px] before:top-[10px] before:w-2 before:h-2 before:bg-primary/50 before:rounded-full">
+<strong class="text-on-surface font-medium">NMDA Receptor Activation:</strong> Acts as a coincidence detector, requiring both presynaptic glutamate release and postsynaptic depolarization to expel the <span class="text-primary font-medium">Mg2+ block</span>.
+                                </li>
+<li class="pl-4 relative before:content-[''] before:absolute before:left-[-5px] before:top-[10px] before:w-2 before:h-2 before:bg-primary/50 before:rounded-full">
+<strong class="text-on-surface font-medium">Calcium Influx:</strong> Essential for activating intracellular kinases, notably <span class="text-primary font-medium bg-primary/10 px-1 rounded">CaMKII</span> and PKC.
+                                </li>
+<li class="pl-4 relative before:content-[''] before:absolute before:left-[-5px] before:top-[10px] before:w-2 before:h-2 before:bg-primary/50 before:rounded-full">
+<strong class="text-on-surface font-medium">AMPA Receptor Insertion:</strong> Kinase activity leads to the phosphorylation and insertion of additional AMPA receptors into the postsynaptic density, enhancing synaptic strength.
+                                </li>
+</ul>
+</section>
+<!-- Section 2 -->
+<section>
+<h2 class="font-headline-md text-[24px] text-on-surface mb-4 flex items-center gap-2 border-b border-white/10 pb-2">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">architecture</span>
+                                Structural Plasticity
+                            </h2>
+<div class="glass-panel p-5 rounded-lg border-l-4 border-l-secondary-container bg-secondary-container/5">
+<p class="font-body-md text-on-surface-variant">
+                                    Beyond molecular changes, late-phase LTP (L-LTP) requires new protein synthesis and gene transcription (often mediated by CREB). This results in morphological changes, such as the enlargement of existing dendritic spines and the formation of new synaptic contacts, providing a structural basis for long-term memory storage.
+                                </p>
+</div>
+</section>
+</article>
+</div>
+</section>
+</main>
+</div>
+    <script src="aether-api.js"></script>
+    <script>
+        AetherAuth.requireAuth();
+
+        const workspaceId = AetherAuth.getWorkspaceId();
+        let selectedSourceId = null;
+
+        // Initialize elements
+        document.addEventListener('DOMContentLoaded', () => {
+            loadExistingNotes();
+        });
+
+        async function loadExistingNotes() {
+            try {
+                const summaries = await AetherAPI.getSummaries(workspaceId);
+                if (summaries && summaries.length > 0) {
+                    renderNoteContent(summaries[0]);
+                }
+            } catch (e) {
+                console.error("Failed to load existing notes:", e);
+            }
+        }
+
+        function renderNoteContent(summary) {
+            const container = document.querySelector('section.col-span-8 .p-10');
+            if (!container) return;
+
+            const header = container.querySelector('header');
+            const coreCard = container.querySelector('.glass-panel');
+            const article = container.querySelector('article');
+
+            // Format tags
+            header.innerHTML = `
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="bg-primary/10 text-primary px-3 py-1 rounded-full font-label-sm text-[12px] uppercase font-bold tracking-wider">Synthesized Note</span>
+                    <span class="bg-white/5 text-on-surface-variant px-3 py-1 rounded-full font-label-sm text-[12px]">Vector Mapped</span>
+                </div>
+                <h1 class="font-display-lg-mobile text-[36px] text-on-surface leading-tight mb-4">${summary.source_name || 'Academic Synthesis'}</h1>
+                <p class="font-body-lg text-on-surface-variant text-[18px] max-w-3xl">Auto-drafted detailed lecture structure and semantic core notes.</p>
+            `;
+
+            // Core summary
+            coreCard.innerHTML = `
+                <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-100 transition-opacity duration-500"></div>
+                <div class="flex items-start gap-4 relative z-10">
+                    <div class="mt-1">
+                        <span class="material-symbols-outlined text-primary text-[24px]">lightbulb</span>
+                    </div>
+                    <div>
+                        <h3 class="font-headline-md text-[18px] text-on-surface mb-2">Core Synthesis</h3>
+                        <p class="font-body-md text-on-surface-variant leading-relaxed">
+                            ${summary.content || 'Synthesis drafted from active source material. Start research or add files.'}
+                        </p>
+                    </div>
+                </div>
+            `;
+
+            // Split into sections or just render
+            article.innerHTML = `
+                <section class="space-y-4">
+                    <h2 class="font-headline-md text-[24px] text-on-surface mb-4 flex items-center gap-2 border-b border-white/10 pb-2">
+                        <span class="material-symbols-outlined text-on-surface-variant text-[20px]">description</span>
+                        Detailed Analysis
+                    </h2>
+                    <div class="font-body-md text-on-surface-variant leading-relaxed whitespace-pre-wrap">
+                        ${summary.content || 'Empty detailed analysis.'}
+                    </div>
+                </section>
+            `;
+        }
+
+        async function handleFileUpload(files) {
+            if (!files || files.length === 0) return;
+            const file = files[0];
+
+            const title = document.getElementById('upload-title');
+            const desc = document.getElementById('upload-desc');
+            const progressContainer = document.getElementById('progress-container');
+            const progressBar = document.getElementById('progress-bar');
+            const icon = document.getElementById('upload-icon');
+
+            title.innerText = `Uploading ${file.name}...`;
+            desc.innerText = "Extracting academic text and transcript maps...";
+            progressContainer.classList.remove('hidden');
+            progressBar.style.width = '0%';
+            icon.innerText = "upload_file";
+            icon.parentElement.classList.add('animate-pulse');
+
+            try {
+                const srcData = await AetherAPI.uploadFile(workspaceId, file, (progress) => {
+                    progressBar.style.width = `${progress}%`;
+                });
+
+                title.innerText = "Parsing document context...";
+                desc.innerText = "Structuring data, generating vector embeddings...";
+                icon.innerText = "auto_awesome";
+
+                await AetherAPI.pollSourceReady(srcData.id);
+                selectedSourceId = srcData.id;
+
+                title.innerText = "Synthesis Complete!";
+                desc.innerText = "Ready to generate detailed study notes.";
+                icon.innerText = "check_circle";
+                icon.parentElement.classList.remove('animate-pulse');
+                icon.parentElement.classList.add('bg-green-500/20', 'text-green-500');
+
+                showToast('Document analyzed successfully! Click "Synthesize Notes" to finish.', 'success');
+
+                setTimeout(() => {
+                    title.innerText = "Drag & drop PDFs";
+                    desc.innerText = "or click to browse local files";
+                    progressContainer.classList.add('hidden');
+                    progressBar.style.width = "0%";
+                    icon.innerText = "upload_file";
+                    icon.parentElement.classList.remove('bg-green-500/20', 'text-green-500');
+                }, 3000);
+
+            } catch (e) {
+                showToast('Synthesis failed: ' + e.message, 'error');
+                title.innerText = "Upload failed";
+                desc.innerText = e.message;
+                icon.innerText = "error";
+                icon.parentElement.classList.remove('animate-pulse');
+            }
+        }
+
+        async function synthesizeNotesFromInput() {
+            const btn = document.querySelector('button[onclick="synthesizeNotesFromInput()"]');
+            const restore = setButtonLoading(btn, 'Synthesizing Notes...');
+
+            const urlInput = document.getElementById('noteUrl');
+            const ytInput = document.getElementById('noteYt');
+            const rawText = document.getElementById('noteRawText');
+
+            try {
+                // If they provided a URL/YT link, let's ingest it first
+                if (urlInput && urlInput.value.trim()) {
+                    showToast('Ingesting Web Resource...', 'info');
+                    const src = await AetherAPI.ingestURL(workspaceId, urlInput.value.trim());
+                    await AetherAPI.pollSourceReady(src.id);
+                    selectedSourceId = src.id;
+                    urlInput.value = '';
+                } else if (ytInput && ytInput.value.trim()) {
+                    showToast('Ingesting YouTube Transcript...', 'info');
+                    const src = await AetherAPI.ingestURL(workspaceId, ytInput.value.trim());
+                    await AetherAPI.pollSourceReady(src.id);
+                    selectedSourceId = src.id;
+                    ytInput.value = '';
+                }
+
+                // Call FastAPI backend to generate detailed notes
+                showToast('Compiling detailed academic summaries...', 'info');
+                const summary = await AetherAPI.generateSummary(workspaceId, selectedSourceId, 'detailed');
+                renderNoteContent(summary);
+                showToast('Notes synthesized successfully!', 'success');
+            } catch (e) {
+                showToast('Failed to synthesize: ' + e.message, 'error');
+            } finally {
+                restore();
+            }
+        }
+    </script>
+    <!-- New Research Modal -->
+    <div id="newResearchModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-surface-dim/80 backdrop-blur-sm" id="modalOverlay"></div>
+        <div class="relative bg-surface-container-low border border-outline-variant w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+            <div class="p-6 border-b border-outline-variant flex justify-between items-center">
+                <h3 class="font-headline-md text-headline-md text-on-surface">Ingest Web Resource</h3>
+                <button id="closeModal" class="text-on-surface-variant hover:text-on-surface transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="p-6 space-y-4">
+                <div>
+                    <label class="block font-label-sm text-label-sm text-on-surface-variant mb-2">Resource Name (Optional)</label>
+                    <input type="text" id="ingestName" class="w-full bg-surface-container border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="e.g., Stanford Quantum Computing Lecture...">
+                </div>
+                <div>
+                    <label class="block font-label-sm text-label-sm text-on-surface-variant mb-2">URL or YouTube Link</label>
+                    <input type="url" id="ingestUrl" class="w-full bg-surface-container border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="https://youtube.com/watch?v=...">
+                </div>
+            </div>
+            <div class="p-6 bg-surface-container-highest/30 flex justify-end gap-3">
+                <button class="px-6 py-2 rounded-lg text-on-surface-variant font-label-sm text-label-sm hover:text-on-surface" id="cancelModal">Cancel</button>
+                <button class="px-6 py-2 rounded-lg bg-primary text-on-primary font-label-sm text-label-sm hover:bg-primary/90 transition-colors" id="createResearch">Synthesize URL</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('newResearchModal');
+        const openBtn = document.getElementById('newResearchBtn');
+        const closeBtn = document.getElementById('closeModal');
+        const cancelBtn = document.getElementById('cancelModal');
+        const overlay = document.getElementById('modalOverlay');
+        const createBtn = document.getElementById('createResearch');
+
+        const toggleModal = (show) => {
+            modal.classList.toggle('hidden', !show);
+            if(show) document.body.style.overflow = 'hidden';
+            else document.body.style.overflow = 'auto';
+        };
+
+        if (openBtn) openBtn.onclick = () => toggleModal(true);
+        if (closeBtn) closeBtn.onclick = () => toggleModal(false);
+        if (cancelBtn) cancelBtn.onclick = () => toggleModal(false);
+        if (overlay) overlay.onclick = () => toggleModal(false);
+
+        if (createBtn) {
+            createBtn.onclick = async () => {
+                const nameInput = document.getElementById('ingestName');
+                const urlInput = document.getElementById('ingestUrl');
+                const url = urlInput.value.trim();
+                const name = nameInput.value.trim();
+
+                if (!url) {
+                    showToast('Please enter a valid URL', 'warning');
+                    return;
+                }
+
+                createBtn.disabled = true;
+                const restore = setButtonLoading(createBtn, 'Ingesting...');
+
+                try {
+                    const data = await AetherAPI.ingestURL(workspaceId, url, name || null);
+                    showToast('Web resource added! Ingesting content...', 'info');
+                    toggleModal(false);
+                    urlInput.value = '';
+                    nameInput.value = '';
+                    
+                    await AetherAPI.pollSourceReady(data.id);
+                    showToast(`Ingestion completed! Preparing new assessment...`, 'info');
+                    selectedSourceId = data.id;
+                    synthesizeNotesFromInput();
+                } catch (e) {
+                    showToast('Failed to ingest URL: ' + e.message, 'error');
+                } finally {
+                    restore();
+                }
+            };
+        }
+    </script>
+</body></html>
+</body></html>

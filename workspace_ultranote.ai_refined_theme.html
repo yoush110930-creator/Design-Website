@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aether Academic - Workspace Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "surface-container-highest": "#35333e",
+                "surface-container": "#201e28",
+                "on-surface": "#e5e0ee",
+                "on-secondary": "#2f148c",
+                "tertiary-fixed-dim": "#ffb77d",
+                "surface": "#14121b",
+                "surface-tint": "#c9bfff",
+                "inverse-surface": "#e5e0ee",
+                "on-secondary-container": "#b7aaff",
+                "tertiary": "#ffb77d",
+                "on-tertiary-fixed": "#2f1500",
+                "on-surface-variant": "#c9c4d8",
+                "surface-dim": "#14121b",
+                "secondary": "#c9bfff",
+                "on-primary-container": "#28008a",
+                "on-error": "#690005",
+                "on-primary": "#2e009c",
+                "tertiary-container": "#d57a1e",
+                "outline": "#928ea1",
+                "on-primary-fixed": "#1a0063",
+                "inverse-primary": "#5d3fe0",
+                "primary-fixed": "#e5deff",
+                "surface-container-low": "#1c1a24",
+                "on-error-container": "#ffdad6",
+                "inverse-on-surface": "#312f39",
+                "surface-container-high": "#2b2932",
+                "secondary-fixed-dim": "#c9bfff",
+                "secondary-fixed": "#e5deff",
+                "secondary-container": "#4632a2",
+                "primary-fixed-dim": "#c9bfff",
+                "on-secondary-fixed-variant": "#4632a2",
+                "on-tertiary-container": "#432100",
+                "background": "#14121b",
+                "surface-variant": "#35333e",
+                "outline-variant": "#484555",
+                "surface-container-lowest": "#0e0d16",
+                "primary": "#c9bfff",
+                "on-background": "#e5e0ee",
+                "on-secondary-fixed": "#1a0063",
+                "on-primary-fixed-variant": "#441cc8",
+                "tertiary-fixed": "#ffdcc3",
+                "surface-bright": "#3a3842",
+                "primary-container": "#917eff",
+                "error-container": "#93000a",
+                "on-tertiary-fixed-variant": "#6e3900",
+                "on-tertiary": "#4d2600",
+                "error": "#ffb4ab"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "container-max": "1280px",
+                "margin-mobile": "20px",
+                "unit": "8px",
+                "margin-desktop": "64px",
+                "margin-tablet": "32px",
+                "gutter": "24px"
+        },
+        "fontFamily": {
+                "label-sm": [
+                        "Inter"
+                ],
+                "display-lg-mobile": [
+                        "Inter"
+                ],
+                "headline-md": [
+                        "Inter"
+                ],
+                "body-md": [
+                        "Inter"
+                ],
+                "body-lg": [
+                        "Inter"
+                ],
+                "display-lg": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "label-sm": [
+                        "13px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "display-lg-mobile": [
+                        "32px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "1.4",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom progress bar animation */
+        @keyframes progress-animation {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        .animate-progress {
+            animation: progress-animation 3s ease-in-out forwards;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-background font-body-md text-body-md flex antialiased text-on-background">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-full py-8 px-4 gap-6 fixed left-0 top-0 w-64 bg-surface-container-low border-r border-outline-variant shadow-lg z-40">
+<!-- Header -->
+<div class="flex items-center gap-3 px-3 mb-4">
+<div class="w-10 h-10 rounded-xl bg-primary-container/20 flex items-center justify-center border border-outline-variant/30">
+<img alt="Academic Workspace Logo" class="w-full h-full object-cover rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaAk6aGqMUjlQXCuGtP45u2kqeomqxkG2m9mzE72hYtkzA5TOhSNaUHqqsa21_0TCXW1fhHKyZQjwHwW-R6W_TkEmlwGhAZFrHZ0-49YSaBSLy2zL8x0NYi1OQ6RzjYPcQkyMrJ8Nmp59qVVjrTluqX0l9I39GUeYQViodkg9ArjIPMsDV8qnLsZ9wxuf9wgW_bjkptYIXcxrxkaWsvPJfEcm56natlUOMozRMH6t2CY6nLZUYnoNknqUoOLMlmIspSJkAu1v9gUBX"/>
+</div>
+<div>
+<a href="homepage_ultranote.ai_updated_theme.html" class="font-headline-md text-headline-md text-on-surface text-sm tracking-tight hover:text-primary transition-colors">Aether Academic</a>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Workspace</p>
+</div>
+</div>
+        <!-- CTA -->
+        <div class="px-2 mb-4">
+            <button id="newResearchBtn" class="w-full bg-primary text-on-primary font-label-sm text-label-sm py-3 rounded-lg hover:bg-primary/90 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-sm flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">add</span>
+                New Research
+            </button>
+        </div>
+<!-- Main Navigation -->
+<ul class="flex-1 flex flex-col gap-2">
+<li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary/10 text-primary border-r-2 border-primary transition-all duration-150 font-label-sm text-label-sm" href="workspace_ultranote.ai_refined_theme.html">
+                    <span class="material-symbols-outlined text-[20px] icon-fill" data-icon="dashboard">dashboard</span>
+                    Workspace
+                </a>
+            </li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="ai_notes_ultranote.ai.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="description">description</span>
+                    Notes
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="quiz_generator_ultranote.ai.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="quiz">quiz</span>
+                    Quizzes
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="flashcards_ultranote.ai.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="style">style</span>
+                    Flashcards
+                </a>
+</li>
+<li>
+    <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 hover:text-on-surface transition-all text-sm" href="collaborative_notes_ultranote.ai.html">
+        <span class="material-symbols-outlined text-[20px]">library_books</span>
+        Library
+    </a>
+</li>
+<li>
+    <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 hover:text-on-surface transition-all text-sm" href="mind_maps_ultranote.ai.html">
+        <span class="material-symbols-outlined text-[20px]">account_tree</span>
+        Mind Maps
+    </a>
+</li>
+</ul>
+<!-- Footer Navigation -->
+<ul class="flex flex-col gap-1 border-t border-outline-variant pt-4">
+<li>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="support_ultranote.ai.html">
+<span class="material-symbols-outlined text-[18px]" data-icon="help">help</span>
+                    Help
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="homepage_ultranote.ai_updated_theme.html">
+<span class="material-symbols-outlined text-[18px]" data-icon="logout">logout</span>
+                    Logout
+                </a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col md:ml-64 w-full min-h-screen">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-margin-desktop h-16 bg-surface border-b border-outline-variant shadow-sm">
+<div class="flex-1 flex items-center">
+<!-- Search Placeholder -->
+<div class="flex items-center gap-2 text-on-surface-variant w-64 px-4 py-2 rounded-full bg-surface-container border border-outline-variant focus-within:border-primary focus-within:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-sm">search</span>
+<input class="bg-transparent border-none outline-none text-sm w-full font-body-md text-on-surface placeholder:text-on-surface-variant focus:ring-0 p-0" placeholder="Search knowledge base..." type="text"/>
+</div>
+</div>
+<!-- Mobile Brand -->
+<a href="homepage_ultranote.ai_updated_theme.html" class="md:hidden font-headline-md text-headline-md font-semibold text-on-surface hover:text-primary transition-colors">
+                Aether Academic
+            </a>
+<div class="flex-1 flex items-center justify-end gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200" onclick="window.location.href='settings_ultranote.ai.html'">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container overflow-hidden border border-outline-variant cursor-pointer ml-2">
+<img alt="Student researcher profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV2f0Od8C-O6m-MRvKvRNH5fny_zpAUnrm_NVJIPmtKHYXQbvjUgyYC-TX9TL-kA4WknAss0q09MPFLQPot50AVswYmLZ3wlWtPRcELh1fKp0YLgrMB53A4M3Xlqp6XYz-MSBwBOKMt_XxkckcJsWeovaYDTqEVAQu-W5TnA5F3oPEwBjvVomAVNsIJhW2aD7mkDWMhXc3VMLkK-R661A1OR5D76ZPJtEpOxgmfDCR52KV00BC2Z16LAdXHcMeIcrnJ90mpskgV21D"/>
+</div>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 p-margin-mobile md:p-margin-desktop w-full max-w-container-max mx-auto">
+<!-- Welcome Section -->
+<section class="mb-12">
+<h2 class="font-display-lg text-display-lg text-on-surface mb-2">Good morning, Alex.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Your research matrix is ready. What are we synthesizing today?</p>
+</section>
+<!-- Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Center: Upload Zone (Col 1-8) -->
+<div class="md:col-span-8 flex flex-col gap-gutter">
+<!-- Upload Box -->
+<div id="upload-zone" class="bg-surface-container border-2 border-dashed border-outline-variant rounded-xl p-10 flex flex-col items-center justify-center hover:border-primary transition-colors group cursor-pointer relative overflow-hidden" onclick="document.getElementById('file-input').click()">
+                        <input type="file" id="file-input" class="hidden" onchange="handleFileUpload(this)">
+                        <div class="w-16 h-16 rounded-full bg-primary-container flex items-center justify-center mb-6 text-on-primary-container group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-3xl" id="upload-icon">upload_file</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-on-surface mb-2" id="upload-title">Drop files to synthesize</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant text-center max-w-md" id="upload-desc">
+                            Upload PDFs, lecture recordings, or rough notes. Aether will extract key concepts, generate summaries, and prepare study materials automatically.
+                        </p>
+                        <div id="progress-container" class="hidden w-full max-w-xs mt-6 h-2 bg-white/10 rounded-full overflow-hidden">
+                            <div id="progress-bar" class="h-full bg-primary rounded-full"></div>
+                        </div>
+                        <div class="mt-6 flex gap-4" id="upload-actions">
+                            <button class="bg-surface-container-high border border-outline-variant text-on-surface rounded-full px-6 py-2 font-label-sm text-label-sm hover:bg-surface-container-highest transition-colors">Browse Files</button>
+                            <button class="text-primary font-label-sm text-label-sm hover:text-primary-container transition-colors" onclick="event.stopPropagation()">Connect Integration</button>
+                        </div>
+                    </div>
+<!-- Quick Actions Bento Row -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-gutter">
+<button class="bg-surface-container border border-outline-variant rounded-xl p-6 flex items-center gap-4 hover:bg-surface-container-high transition-colors text-left group">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center text-secondary border border-outline-variant">
+<span class="material-symbols-outlined">edit_document</span>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg text-on-surface font-medium group-hover:text-primary transition-colors">New Note</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Start writing on a blank canvas.</p>
+</div>
+</button>
+<button class="bg-surface-container border border-outline-variant rounded-xl p-6 flex items-center gap-4 hover:bg-surface-container-high transition-colors text-left group" onclick="window.location.href='quiz_generator_ultranote.ai.html'">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center text-tertiary border border-outline-variant">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg text-on-surface font-medium group-hover:text-primary transition-colors">Generate Quiz</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Test knowledge from recent nodes.</p>
+</div>
+</button>
+</div>
+</div>
+<!-- Right: Recent Materials Sidebar (Col 9-12) -->
+<div class="md:col-span-4 flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h3 class="font-body-lg text-body-lg font-medium text-on-surface">Recent Materials</h3>
+<button class="text-primary text-sm hover:underline font-label-sm text-label-sm">View All</button>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Card 1 -->
+<div class="bg-surface-container border border-outline-variant rounded-lg p-5 hover:border-primary cursor-pointer transition-colors">
+<div class="flex items-start justify-between mb-3">
+<span class="px-2 py-1 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm">Neuroscience</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">more_horiz</span>
+</div>
+<h4 class="font-body-md text-body-md font-medium text-on-surface mb-1">Synaptic Plasticity Mechanisms</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-4 line-clamp-2">Analysis of long-term potentiation and depression in the hippocampus...</p>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                                2 hours ago
+                            </div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container border border-outline-variant rounded-lg p-5 hover:border-primary cursor-pointer transition-colors">
+<div class="flex items-start justify-between mb-3">
+<span class="px-2 py-1 rounded-full bg-tertiary-container text-on-tertiary-container font-label-sm text-label-sm">Literature</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">more_horiz</span>
+</div>
+<h4 class="font-body-md text-body-md font-medium text-on-surface mb-1">Post-Modernist Themes</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-4 line-clamp-2">Synthesized notes from Dr. Aris's lecture on narrative structure fragmentation.</p>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                                Yesterday
+                            </div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container border border-outline-variant rounded-lg p-5 hover:border-primary cursor-pointer transition-colors opacity-70">
+<div class="flex items-start justify-between mb-3">
+<span class="px-2 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">Quantum Physics</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">more_horiz</span>
+</div>
+<h4 class="font-body-md text-body-md font-medium text-on-surface mb-1">Entanglement Theory Basics</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-4 line-clamp-2">Initial outline and key equations extracted from primary textbook source.</p>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                                Oct 12
+                            </div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+    <script src="aether-api.js"></script>
+    <script>
+        // Require Authentication
+        AetherAuth.requireAuth();
+
+        const workspaceId = AetherAuth.getWorkspaceId();
+        const userName = localStorage.getItem('AETHER_USER_NAME') || 'Scholar';
+
+        // Update welcome header
+        const welcomeHeader = document.querySelector('main h2');
+        if (welcomeHeader) {
+            welcomeHeader.textContent = `Good morning, ${userName}.`;
+        }
+
+        // Initialize lists and handlers
+        document.addEventListener('DOMContentLoaded', () => {
+            loadRecentMaterials();
+        });
+
+        async function loadRecentMaterials() {
+            try {
+                const sources = await AetherAPI.getSources(workspaceId);
+                const container = document.querySelector('.md\\:col-span-4 .flex.flex-col.gap-4');
+                if (!container) return;
+
+                if (sources.length === 0) {
+                    container.innerHTML = `
+                        <div class="text-center py-8 opacity-60">
+                            <span class="material-symbols-outlined text-4xl mb-2 text-on-surface-variant">folder_open</span>
+                            <p class="text-xs">No sources uploaded yet. Use the upload zone to add your first academic text!</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = '';
+                sources.slice(0, 5).forEach(src => {
+                    const card = createSourceCard(src);
+                    container.appendChild(card);
+                });
+            } catch (e) {
+                showToast('Failed to load recent materials: ' + e.message, 'error');
+            }
+        }
+
+        function createSourceCard(src) {
+            const card = document.createElement('div');
+            card.className = 'bg-surface-container border border-outline-variant rounded-lg p-5 hover:border-primary cursor-pointer transition-colors relative group';
+            
+            const dateStr = new Date(src.created_at).toLocaleDateString(undefined, {
+                month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
+            });
+
+            const statusBadge = src.status === 'processing' 
+                ? `<span class="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-500 text-[10px] uppercase font-bold tracking-wider border border-amber-500/20 animate-pulse">Processing</span>`
+                : src.status === 'error'
+                ? `<span class="px-2 py-0.5 rounded-full bg-red-500/10 text-red-500 text-[10px] uppercase font-bold tracking-wider border border-red-500/20">Error</span>`
+                : `<span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] uppercase font-bold tracking-wider border border-primary/15">Synthesized</span>`;
+
+            card.innerHTML = `
+                <div class="flex items-start justify-between mb-3">
+                    ${statusBadge}
+                    <button class="text-on-surface-variant hover:text-red-400 transition-colors p-1" onclick="deleteSource(event, '${src.id}')">
+                        <span class="material-symbols-outlined text-[16px]">delete</span>
+                    </button>
+                </div>
+                <h4 class="font-body-md text-body-md font-medium text-on-surface mb-1 truncate">${src.name}</h4>
+                <p class="font-label-sm text-label-sm text-on-surface-variant mb-4 line-clamp-2">${src.summary || 'Academic resource uploaded to study base.'}</p>
+                <div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-[11px]">
+                    <span class="material-symbols-outlined text-[14px]">schedule</span>
+                    ${dateStr}
+                </div>
+            `;
+            return card;
+        }
+
+        async function deleteSource(event, sourceId) {
+            event.stopPropagation();
+            if (!confirm('Are you sure you want to delete this source? All associated chunks and summaries will be lost.')) return;
+            try {
+                await AetherAPI.deleteSource(sourceId);
+                showToast('Source deleted successfully', 'success');
+                loadRecentMaterials();
+            } catch (e) {
+                showToast('Failed to delete source: ' + e.message, 'error');
+            }
+        }
+
+        async function handleFileUpload(input) {
+            if (!input.files || input.files[0].length === 0) return;
+            const file = input.files[0];
+            
+            const title = document.getElementById('upload-title');
+            const desc = document.getElementById('upload-desc');
+            const actions = document.getElementById('upload-actions');
+            const progressContainer = document.getElementById('progress-container');
+            const progressBar = document.getElementById('progress-bar');
+            const icon = document.getElementById('upload-icon');
+
+            title.innerText = `Uploading ${file.name}...`;
+            desc.innerText = "Transmitting files securely to Aether's academic parser.";
+            actions.classList.add('hidden');
+            progressContainer.classList.remove('hidden');
+            progressBar.style.width = '0%';
+            icon.innerText = "upload_file";
+            icon.parentElement.classList.add('animate-pulse');
+
+            try {
+                // Perform real upload
+                const data = await AetherAPI.uploadFile(workspaceId, file, (progress) => {
+                    progressBar.style.width = `${progress}%`;
+                });
+
+                title.innerText = "Processing source document...";
+                desc.innerText = "Structuring content, splitting sections, and building semantic embeddings.";
+                icon.innerText = "auto_awesome";
+
+                // Poll until ready
+                await AetherAPI.pollSourceReady(data.id);
+
+                title.innerText = "Synthesis Complete!";
+                desc.innerText = "Your study resources are generated and indexed.";
+                icon.innerText = "check_circle";
+                icon.parentElement.classList.remove('animate-pulse');
+                icon.parentElement.classList.add('bg-green-500/20', 'text-green-500');
+
+                showToast('Document synthesized successfully!', 'success');
+                loadRecentMaterials();
+
+                setTimeout(() => {
+                    title.innerText = "Drop files to synthesize";
+                    desc.innerText = "Upload PDFs, lecture recordings, or rough notes. Aether will extract key concepts, generate summaries, and prepare study materials automatically.";
+                    actions.classList.remove('hidden');
+                    progressContainer.classList.add('hidden');
+                    progressBar.style.width = "0%";
+                    icon.innerText = "upload_file";
+                    icon.parentElement.classList.remove('bg-green-500/20', 'text-green-500');
+                }, 3000);
+
+            } catch (e) {
+                showToast('Synthesis failed: ' + e.message, 'error');
+                title.innerText = "Upload failed";
+                desc.innerText = e.message;
+                icon.innerText = "error";
+                icon.parentElement.classList.remove('animate-pulse');
+                setTimeout(() => {
+                    title.innerText = "Drop files to synthesize";
+                    desc.innerText = "Upload PDFs, lecture recordings, or rough notes. Aether will extract key concepts, generate summaries, and prepare study materials automatically.";
+                    actions.classList.remove('hidden');
+                    progressContainer.classList.add('hidden');
+                    icon.innerText = "upload_file";
+                }, 4000);
+            }
+        }
+    </script>
+
+    <!-- New Research Modal (URL/Web Ingestion) -->
+    <div id="newResearchModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-surface-dim/80 backdrop-blur-sm" id="modalOverlay"></div>
+        <div class="relative bg-surface-container-low border border-outline-variant w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+            <div class="p-6 border-b border-outline-variant flex justify-between items-center">
+                <h3 class="font-headline-md text-headline-md text-on-surface">Ingest Web Resource</h3>
+                <button id="closeModal" class="text-on-surface-variant hover:text-on-surface transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="p-6 space-y-4">
+                <div>
+                    <label class="block font-label-sm text-label-sm text-on-surface-variant mb-2">Resource Name (Optional)</label>
+                    <input type="text" id="ingestName" class="w-full bg-surface-container border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="e.g., Stanford Quantum Computing Lecture...">
+                </div>
+                <div>
+                    <label class="block font-label-sm text-label-sm text-on-surface-variant mb-2">URL or YouTube Link</label>
+                    <input type="url" id="ingestUrl" class="w-full bg-surface-container border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="https://youtube.com/watch?v=... or https://arxiv.org/html/...">
+                </div>
+            </div>
+            <div class="p-6 bg-surface-container-highest/30 flex justify-end gap-3">
+                <button class="px-6 py-2 rounded-lg text-on-surface-variant font-label-sm text-label-sm hover:text-on-surface" id="cancelModal">Cancel</button>
+                <button class="px-6 py-2 rounded-lg bg-primary text-on-primary font-label-sm text-label-sm hover:bg-primary/90 transition-colors" id="createResearch">Synthesize URL</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('newResearchModal');
+        const openBtn = document.getElementById('newResearchBtn');
+        const closeBtn = document.getElementById('closeModal');
+        const cancelBtn = document.getElementById('cancelModal');
+        const overlay = document.getElementById('modalOverlay');
+        const createBtn = document.getElementById('createResearch');
+
+        const toggleModal = (show) => {
+            modal.classList.toggle('hidden', !show);
+            if(show) document.body.style.overflow = 'hidden';
+            else document.body.style.overflow = 'auto';
+        };
+
+        if (openBtn) openBtn.onclick = () => toggleModal(true);
+        if (closeBtn) closeBtn.onclick = () => toggleModal(false);
+        if (cancelBtn) cancelBtn.onclick = () => toggleModal(false);
+        if (overlay) overlay.onclick = () => toggleModal(false);
+
+        if (createBtn) {
+            createBtn.onclick = async () => {
+                const nameInput = document.getElementById('ingestName');
+                const urlInput = document.getElementById('ingestUrl');
+                const url = urlInput.value.trim();
+                const name = nameInput.value.trim();
+
+                if (!url) {
+                    showToast('Please enter a valid URL', 'warning');
+                    return;
+                }
+
+                createBtn.disabled = true;
+                const restore = setButtonLoading(createBtn, 'Ingesting...');
+
+                try {
+                    const data = await AetherAPI.ingestURL(workspaceId, url, name || null);
+                    showToast('Web resource added successfully! Ingesting content...', 'info');
+                    toggleModal(false);
+                    urlInput.value = '';
+                    nameInput.value = '';
+                    
+                    loadRecentMaterials();
+                    
+                    // Poll background progress
+                    await AetherAPI.pollSourceReady(data.id);
+                    showToast(`Synthesis of ${data.name} completed successfully!`, 'success');
+                    loadRecentMaterials();
+                } catch (e) {
+                    showToast('Failed to ingest URL: ' + e.message, 'error');
+                } finally {
+                    restore();
+                }
+            };
+        }
+    </script>
+</body></html>

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ultranote.ai - Study Planner</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-low": "#1c1a24",
+                      "secondary-container": "#4632a2",
+                      "on-secondary-fixed-variant": "#4632a2",
+                      "on-secondary-fixed": "#1a0063",
+                      "on-tertiary-container": "#432100",
+                      "on-secondary-container": "#b7aaff",
+                      "on-error": "#690005",
+                      "error-container": "#93000a",
+                      "inverse-on-surface": "#312f39",
+                      "on-tertiary-fixed": "#2f1500",
+                      "outline-variant": "#484555",
+                      "on-primary-fixed-variant": "#441cc8",
+                      "surface-variant": "#35333e",
+                      "on-primary-container": "#28008a",
+                      "on-background": "#e5e0ee",
+                      "surface-container": "#201e28",
+                      "on-primary": "#2e009c",
+                      "secondary-fixed": "#e5deff",
+                      "surface-container-lowest": "#0e0d16",
+                      "surface-container-highest": "#35333e",
+                      "primary": "#c9bfff",
+                      "error": "#ffb4ab",
+                      "tertiary-container": "#d57a1e",
+                      "background": "#14121b",
+                      "tertiary-fixed-dim": "#ffb77d",
+                      "surface-container-high": "#2b2932",
+                      "surface-dim": "#14121b",
+                      "surface-bright": "#3a3842",
+                      "secondary-fixed-dim": "#c9bfff",
+                      "tertiary-fixed": "#ffdcc3",
+                      "tertiary": "#ffb77d",
+                      "on-error-container": "#ffdad6",
+                      "inverse-surface": "#e5e0ee",
+                      "inverse-primary": "#5d3fe0",
+                      "surface-tint": "#c9bfff",
+                      "on-tertiary-fixed-variant": "#6e3900",
+                      "on-surface-variant": "#c9c4d8",
+                      "on-secondary": "#2f148c",
+                      "primary-fixed-dim": "#c9bfff",
+                      "surface": "#14121b",
+                      "primary-fixed": "#e5deff",
+                      "outline": "#928ea1",
+                      "secondary": "#c9bfff",
+                      "primary-container": "#917eff",
+                      "on-tertiary": "#4d2600",
+                      "on-primary-fixed": "#1a0063",
+                      "on-surface": "#e5e0ee"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "margin-desktop": "64px",
+                      "container-max": "1280px",
+                      "margin-mobile": "20px",
+                      "gutter": "24px",
+                      "margin-tablet": "32px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "display-lg-mobile": ["Inter"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "label-sm": ["13px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "headline-md": ["24px", {"lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}]
+              }
+            }
+          }
+        }
+    </script>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased overflow-hidden selection:bg-primary/30 selection:text-primary">
+<div class="flex h-screen w-full">
+<!-- SIDENAVBAR COMPONENT -->
+<nav class="hidden md:flex flex-col h-full py-8 px-4 gap-6 fixed left-0 top-0 w-64 bg-surface-container-low border-r border-outline-variant shadow-lg z-40">
+        <!-- Header -->
+        <div class="flex items-center gap-3 px-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-primary-container/20 flex items-center justify-center border border-outline-variant/30">
+                <img alt="Academic Workspace Logo" class="w-full h-full object-cover rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaAk6aGqMUjlQXCuGtP45u2kqeomqxkG2m9mzE72hYtkzA5TOhSNaUHqqsa21_0TCXW1fhHKyZQjwHwW-R6W_TkEmlwGhAZFrHZ0-49YSaBSLy2zL8x0NYi1OQ6RzjYPcQkyMrJ8Nmp59qVVjrTluqX0l9I39GUeYQViodkg9ArjIPMsDV8qnLsZ9wxuf9wgW_bjkptYIXcxrxkaWsvPJfEcm56natlUOMozRMH6t2CY6nLZUYnoNknqUoOLMlmIspSJkAu1v9gUBX"/>
+            </div>
+            <div>
+                <a href="homepage_ultranote.ai_updated_theme.html" class="font-headline-md text-headline-md text-on-surface text-sm tracking-tight hover:text-primary transition-colors">Aether Academic</a>
+                <p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Workspace</p>
+            </div>
+        </div>
+        <!-- CTA -->
+        <div class="px-2 mb-4">
+            <button class="w-full bg-primary text-on-primary font-label-sm text-label-sm py-3 rounded-lg hover:bg-primary/90 transition-colors shadow-sm">
+                New Research
+            </button>
+        </div>
+        <!-- Main Navigation -->
+        <ul class="flex-1 flex flex-col gap-2">
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="workspace_ultranote.ai_refined_theme.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+                    Workspace
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="ai_notes_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="description">description</span>
+                    Notes
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="quiz_generator_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="quiz">quiz</span>
+                    Quizzes
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="flashcards_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="style">style</span>
+                    Flashcards
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="collaborative_notes_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="library_books">library_books</span>
+                    Library
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary/10 text-primary border-r-2 border-primary transition-all duration-150 font-label-sm text-label-sm" href="study_planner_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px] icon-fill">calendar_month</span>
+                    Planner
+                </a>
+            </li>
+        </ul>
+        <!-- Footer Navigation -->
+        <ul class="flex flex-col gap-1 border-t border-outline-variant pt-4">
+            <li>
+                <a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="support_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[18px]" data-icon="help">help</span>
+                    Help
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="homepage_ultranote.ai_updated_theme.html">
+                    <span class="material-symbols-outlined text-[18px]" data-icon="logout">logout</span>
+                    Logout
+                </a>
+            </li>
+        </ul>
+    </nav>
+<!-- MAIN CONTENT WRAPPER -->
+<main class="flex-1 flex flex-col md:ml-64 h-full relative">
+<!-- TOPNAVBAR COMPONENT -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-margin-desktop h-16 bg-surface border-b border-outline-variant shadow-sm">
+        <div class="flex-1 flex items-center">
+            <!-- Search Placeholder -->
+            <div class="flex items-center gap-2 text-on-surface-variant w-64 px-4 py-2 rounded-full bg-surface-container border border-outline-variant focus-within:border-primary focus-within:text-on-surface transition-colors">
+                <span class="material-symbols-outlined text-sm">search</span>
+                <input class="bg-transparent border-none outline-none text-sm w-full font-body-md text-on-surface placeholder:text-on-surface-variant focus:ring-0 p-0" placeholder="Search milestones..." type="text"/>
+            </div>
+        </div>
+        <!-- Mobile Brand -->
+        <a href="homepage_ultranote.ai_updated_theme.html" class="md:hidden font-headline-md text-headline-md font-semibold text-on-surface hover:text-primary transition-colors">
+            Aether Academic
+        </a>
+        <div class="flex-1 flex items-center justify-end gap-4">
+            <button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+                <span class="material-symbols-outlined">notifications</span>
+            </button>
+            <button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+                <span class="material-symbols-outlined">settings</span>
+            </button>
+            <div class="w-8 h-8 rounded-full bg-surface-container overflow-hidden border border-outline-variant cursor-pointer ml-2">
+                <img alt="Student researcher profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV2f0Od8C-O6m-MRvKvRNH5fny_zpAUnrm_NVJIPmtKHYXQbvjUgyYC-TX9TL-kA4WknAss0q09MPFLQPot50AVswYmLZ3wlWtPRcELh1fKp0YLgrMB53A4M3Xlqp6XYz-MSBwBOKMt_XxkckcJsWeovaYDTqEVAQu-W5TnA5F3oPEwBjvVomAVNsIJhW2aD7mkDWMhXc3VMLkK-R661A1OR5D76ZPJtEpOxgmfDCR52KV00BC2Z16LAdXHcMeIcrnJ90mpskgV21D"/>
+            </div>
+        </div>
+    </header>
+<!-- CANVAS CONTENT -->
+<div class="flex-1 overflow-y-auto p-margin-mobile md:p-gutter lg:p-margin-desktop bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-surface-container-low via-surface to-surface">
+<div class="max-w-container-max mx-auto space-y-gutter">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-2">Study Planner</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage your research timeline and upcoming academic milestones.</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center bg-white/5 border border-white/10 rounded-lg p-1">
+<button class="px-4 py-1.5 rounded-md font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors">Month</button>
+<button class="px-4 py-1.5 rounded-md font-label-sm text-label-sm bg-white/10 text-on-surface shadow-sm">Week</button>
+</div>
+<button id="addBlockBtn" class="flex items-center justify-center bg-primary text-surface font-label-sm text-label-sm px-4 py-2 rounded-lg hover:bg-primary-fixed transition-colors">
+                                Add Block
+                            </button>
+</div>
+</div>
+<!-- BENTO GRID LAYOUT -->
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-gutter">
+<!-- MAIN CALENDAR CANVAS (Span 3) -->
+<div class="lg:col-span-3 flex flex-col glass-panel rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-[30px] overflow-hidden shadow-2xl">
+<!-- Calendar Controls -->
+<div class="flex items-center justify-between p-6 border-b border-white/10">
+<div class="flex items-center gap-4">
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<h3 class="font-headline-md text-headline-md text-on-surface w-48 text-center">October 2023</h3>
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<button class="font-label-sm text-label-sm text-primary hover:text-primary-fixed px-3 py-1 rounded-md hover:bg-primary/10 transition-colors">Today</button>
+</div>
+<!-- Calendar Grid (Weekly View) -->
+<div class="flex-1 overflow-y-auto relative min-h-[600px]">
+<!-- AI Progress indicator at the very top of calendar to show active scheduling -->
+<div id="calendarProgress" class="absolute top-0 left-0 w-0 h-1 bg-gradient-to-r from-primary via-secondary to-primary z-10 transition-all duration-1000"></div>
+<!-- Grid Wrapper -->
+<div class="grid grid-cols-[60px_repeat(7,1fr)] border-b border-white/10 sticky top-0 bg-surface-container-low/80 backdrop-blur-md z-20">
+<!-- Empty top-left cell -->
+<div class="border-r border-white/5 p-2"></div>
+<!-- Days -->
+<div class="text-center py-3 border-r border-white/5">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Mon</p>
+<p class="font-headline-md text-headline-md text-on-surface mt-1">16</p>
+</div>
+<div class="text-center py-3 border-r border-white/5">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Tue</p>
+<p class="font-headline-md text-headline-md text-primary font-bold mt-1">17</p>
+<div class="w-1 h-1 bg-primary rounded-full mx-auto mt-1"></div>
+</div>
+<div class="text-center py-3 border-r border-white/5">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Wed</p>
+<p class="font-headline-md text-headline-md text-on-surface mt-1">18</p>
+</div>
+<div class="text-center py-3 border-r border-white/5">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Thu</p>
+<p class="font-headline-md text-headline-md text-on-surface mt-1">19</p>
+</div>
+<div class="text-center py-3 border-r border-white/5">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Fri</p>
+<p class="font-headline-md text-headline-md text-on-surface mt-1">20</p>
+</div>
+<div class="text-center py-3 border-r border-white/5">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Sat</p>
+<p class="font-headline-md text-headline-md text-on-surface mt-1 opacity-50">21</p>
+</div>
+<div class="text-center py-3">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Sun</p>
+<p class="font-headline-md text-headline-md text-on-surface mt-1 opacity-50">22</p>
+</div>
+</div>
+<!-- Time Slots & Events -->
+<div class="relative bg-[linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:100%_60px]">
+<!-- Time Labels (Left Column) -->
+<div class="absolute left-0 top-0 w-[60px] h-full border-r border-white/5 text-right pr-2 pt-2 text-[11px] text-on-surface-variant space-y-[44px]">
+<div>9 AM</div>
+<div>10 AM</div>
+<div>11 AM</div>
+<div>12 PM</div>
+<div>1 PM</div>
+<div>2 PM</div>
+<div>3 PM</div>
+<div>4 PM</div>
+</div>
+<!-- Event Overlay Container -->
+<div id="eventCanvas" class="ml-[60px] relative h-[480px]">
+<!-- Event Card 1: Primary (Tue 9am - 11am) -->
+<div class="absolute top-[0px] left-[14.28%] w-[13.5%] h-[118px] bg-primary/10 border border-primary/30 rounded-lg p-2 ml-1 shadow-[0_0_15px_rgba(123,97,255,0.1)] group hover:bg-primary/20 transition-colors cursor-pointer backdrop-blur-md">
+<div class="w-1 absolute left-0 top-2 bottom-2 bg-primary rounded-r-md"></div>
+<p class="font-label-sm text-[11px] text-primary mb-1">09:00 - 11:00</p>
+<p class="font-body-md text-[13px] font-medium text-on-surface leading-tight">Quantum Physics Lit Review</p>
+<div class="mt-2 flex gap-1">
+<span class="inline-block px-1.5 py-0.5 rounded bg-primary/20 text-[10px] text-primary">High Priority</span>
+</div>
+</div>
+<!-- Event Card 2: Secondary (Wed 1pm - 2:30pm) -->
+<div class="absolute top-[240px] left-[28.56%] w-[13.5%] h-[88px] bg-secondary-container/30 border border-secondary/20 rounded-lg p-2 ml-1 group hover:bg-secondary-container/50 transition-colors cursor-pointer backdrop-blur-md">
+<div class="w-1 absolute left-0 top-2 bottom-2 bg-secondary rounded-r-md"></div>
+<p class="font-label-sm text-[11px] text-on-secondary-container mb-1">13:00 - 14:30</p>
+<p class="font-body-md text-[13px] font-medium text-on-surface leading-tight">Research Group Sync</p>
+<div class="absolute bottom-2 right-2">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant">group</span>
+</div>
+</div>
+<!-- Event Card 3: AI Generated Block (Thu 10am - 12pm) -->
+<div class="absolute top-[60px] left-[42.84%] w-[13.5%] h-[118px] bg-surface-bright border border-white/10 rounded-lg p-2 ml-1 relative overflow-hidden group hover:border-primary/50 transition-colors cursor-pointer backdrop-blur-md">
+<!-- AI indicator glow -->
+<div class="absolute top-0 right-0 w-8 h-8 bg-primary/20 blur-[15px] rounded-full"></div>
+<p class="font-label-sm text-[11px] text-on-surface-variant mb-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px] text-primary">auto_awesome</span>
+                                                10:00 - 12:00
+                                            </p>
+<p class="font-body-md text-[13px] font-medium text-on-surface leading-tight">AI Suggested: Thesis Draft Section 2</p>
+<p class="text-[10px] text-on-surface-variant mt-1 line-clamp-2">Based on your recent note additions.</p>
+</div>
+<!-- Current Time Line -->
+<div class="absolute top-[180px] left-0 w-full h-[1px] bg-primary z-30 pointer-events-none">
+<div class="absolute -left-[5px] -top-[4px] w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(123,97,255,0.8)]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- SIDE PANEL (Span 1) -->
+<div class="lg:col-span-1 space-y-gutter flex flex-col">
+<!-- Mini Calendar Bento -->
+<div class="glass-panel bg-white/[0.03] backdrop-blur-[20px] border border-white/10 rounded-2xl p-5 shadow-lg">
+<h4 class="font-label-sm text-label-sm text-on-surface-variant mb-4 uppercase tracking-wider">Mini Calendar</h4>
+<div class="grid grid-cols-7 gap-1 text-center mb-2">
+<span class="text-[10px] text-on-surface-variant">M</span>
+<span class="text-[10px] text-on-surface-variant">T</span>
+<span class="text-[10px] text-on-surface-variant">W</span>
+<span class="text-[10px] text-on-surface-variant">T</span>
+<span class="text-[10px] text-on-surface-variant">F</span>
+<span class="text-[10px] text-on-surface-variant">S</span>
+<span class="text-[10px] text-on-surface-variant">S</span>
+</div>
+<div class="grid grid-cols-7 gap-1 text-center text-sm">
+<!-- Dummy days to show layout -->
+<span class="text-on-surface-variant/30 py-1">25</span>
+<span class="text-on-surface-variant/30 py-1">26</span>
+<span class="text-on-surface-variant/30 py-1">27</span>
+<span class="text-on-surface-variant/30 py-1">28</span>
+<span class="text-on-surface-variant/30 py-1">29</span>
+<span class="text-on-surface-variant/30 py-1">30</span>
+<span class="text-on-surface py-1 hover:bg-white/5 rounded-md cursor-pointer">1</span>
+<span class="text-on-surface py-1 hover:bg-white/5 rounded-md cursor-pointer">2</span>
+<span class="text-on-surface py-1 hover:bg-white/5 rounded-md cursor-pointer">3</span>
+<span class="text-on-surface py-1 hover:bg-white/5 rounded-md cursor-pointer">4</span>
+<span class="text-on-surface py-1 hover:bg-white/5 rounded-md cursor-pointer">5</span>
+<span class="text-on-surface py-1 hover:bg-white/5 rounded-md cursor-pointer">6</span>
+<span class="text-on-surface py-1 hover:bg-white/5 rounded-md cursor-pointer">7</span>
+<span class="text-on-surface py-1 hover:bg-white/5 rounded-md cursor-pointer">8</span>
+<!-- Active Week Row -->
+<span class="text-on-surface py-1 bg-white/5 rounded-md">9</span>
+<span class="text-on-surface py-1 bg-white/5 rounded-md">10</span>
+<span class="text-on-surface py-1 bg-white/5 rounded-md">11</span>
+<span class="text-on-surface py-1 bg-white/5 rounded-md">12</span>
+<span class="text-on-surface py-1 bg-white/5 rounded-md">13</span>
+<span class="text-on-surface py-1 bg-white/5 rounded-md">14</span>
+<span class="text-on-surface py-1 bg-white/5 rounded-md">15</span>
+<span class="text-on-surface py-1 hover:bg-white/5 rounded-md cursor-pointer">16</span>
+<span class="text-primary font-bold py-1 bg-primary/10 rounded-md cursor-pointer">17</span>
+<span class="text-on-surface py-1 hover:bg-white/5 rounded-md cursor-pointer">18</span>
+</div>
+</div>
+<!-- AI Insights Bento -->
+<div class="glass-panel bg-white/[0.03] backdrop-blur-[20px] border border-white/10 rounded-2xl p-5 shadow-lg relative overflow-hidden flex-1">
+<!-- Top gradient border effect for AI -->
+<div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary text-[20px]">psychology</span>
+<h4 class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider">AI Study Plan</h4>
+</div>
+<p class="font-body-md text-[14px] text-on-surface-variant mb-4 leading-relaxed">Based on your recent uploads to the <span class="text-primary">Library</span>, I suggest scheduling 2 more hours for Data Structure algorithms before Friday.</p>
+<button id="aiScheduleBtn" class="w-full py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-sm text-on-surface transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">add_circle</span>
+                                    Add to Calendar
+                                </button>
+</div>
+<!-- Upcoming Tasks Bento -->
+<div class="glass-panel bg-white/[0.03] backdrop-blur-[20px] border border-white/10 rounded-2xl p-5 shadow-lg">
+<h4 class="font-label-sm text-label-sm text-on-surface-variant mb-4 uppercase tracking-wider">Upcoming Deadlines</h4>
+<div class="space-y-3">
+<div class="flex items-start gap-3 p-2 hover:bg-white/5 rounded-lg transition-colors cursor-pointer">
+<div class="w-2 h-2 rounded-full bg-error mt-1.5"></div>
+<div>
+<p class="font-body-md text-[14px] text-on-surface font-medium">Draft Submission</p>
+<p class="text-[12px] text-error">Tomorrow, 11:59 PM</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-2 hover:bg-white/5 rounded-lg transition-colors cursor-pointer">
+<div class="w-2 h-2 rounded-full bg-secondary mt-1.5"></div>
+<div>
+<p class="font-body-md text-[14px] text-on-surface font-medium">Peer Review Notes</p>
+<p class="text-[12px] text-on-surface-variant">Oct 20, 5:00 PM</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script src="aether-api.js"></script>
+<script>
+    AetherAuth.requireAuth();
+
+    function simulateScheduling() {
+        const btn = document.getElementById('aiScheduleBtn');
+        const progress = document.getElementById('calendarProgress');
+        const canvas = document.getElementById('eventCanvas');
+        
+        btn.disabled = true;
+        btn.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">refresh</span> Scheduling...';
+        progress.style.width = '100%';
+        
+        setTimeout(() => {
+            const newBlock = document.createElement('div');
+            newBlock.className = 'absolute top-[360px] left-[57.12%] w-[13.5%] h-[88px] bg-tertiary/10 border border-tertiary/30 rounded-lg p-2 ml-1 shadow-[0_0_15px_rgba(255,183,125,0.1)] animate-in fade-in zoom-in duration-500';
+            newBlock.innerHTML = `
+                <div class="w-1 absolute left-0 top-2 bottom-2 bg-tertiary rounded-r-md"></div>
+                <p class="font-label-sm text-[11px] text-tertiary mb-1">15:00 - 16:30</p>
+                <p class="font-body-md text-[13px] font-medium text-on-surface leading-tight">Data Structures Study</p>
+            `;
+            canvas.appendChild(newBlock);
+            
+            btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">check_circle</span> Scheduled';
+            progress.style.width = '0%';
+            progress.style.transition = 'none';
+            setTimeout(() => { progress.style.transition = 'width 1s'; }, 10);
+        }, 1500);
+    }
+    
+    document.getElementById('aiScheduleBtn').addEventListener('click', simulateScheduling);
+    document.getElementById('addBlockBtn').addEventListener('click', simulateScheduling);
+</script>
+</body></html>

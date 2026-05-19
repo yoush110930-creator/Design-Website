@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aether Academic — Sign In</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode:"class",
+  theme:{extend:{colors:{
+    "primary":"#c9bfff","on-primary":"#2e009c","surface":"#14121b",
+    "surface-container":"#201e28","surface-container-low":"#1c1a24",
+    "on-surface":"#e5e0ee","on-surface-variant":"#c9c4d8",
+    "outline-variant":"#484555","primary-container":"#917eff"
+  }}}
+}
+</script>
+<style>
+  body { font-family: 'Inter', sans-serif; }
+  .glass { backdrop-filter: blur(30px); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); }
+  .nebula { background: radial-gradient(circle, rgba(123,97,255,0.2) 0%, rgba(20,18,27,0) 70%); }
+  input:-webkit-autofill { -webkit-box-shadow: 0 0 0 1000px #201e28 inset; -webkit-text-fill-color: #e5e0ee; }
+</style>
+</head>
+<body class="min-h-screen bg-[#14121b] text-[#e5e0ee] flex items-center justify-center p-4 relative overflow-hidden">
+
+<!-- Ambient glows -->
+<div class="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] nebula pointer-events-none"></div>
+<div class="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] nebula pointer-events-none"></div>
+
+<div class="relative z-10 w-full max-w-md">
+  <!-- Logo -->
+  <div class="text-center mb-10">
+    <div class="w-14 h-14 rounded-2xl bg-[#917eff]/20 border border-[#917eff]/30 flex items-center justify-center mx-auto mb-4">
+      <span class="material-symbols-outlined text-[#c9bfff] text-[28px]" style="font-variation-settings:'FILL' 1">auto_awesome</span>
+    </div>
+    <h1 class="text-3xl font-bold text-[#e5e0ee] tracking-tight">Aether Academic</h1>
+    <p class="text-[#c9c4d8] mt-2 text-sm">Your AI-powered research workspace</p>
+  </div>
+
+  <!-- Tab switcher -->
+  <div class="glass rounded-2xl p-1 mb-6 flex">
+    <button id="loginTab" class="flex-1 py-2.5 rounded-xl text-sm font-semibold transition-all bg-[#917eff]/20 text-[#c9bfff]" onclick="switchTab('login')">Sign In</button>
+    <button id="registerTab" class="flex-1 py-2.5 rounded-xl text-sm font-semibold transition-all text-[#c9c4d8] hover:text-[#e5e0ee]" onclick="switchTab('register')">Create Account</button>
+  </div>
+
+  <!-- Login Form -->
+  <div id="loginForm" class="glass rounded-2xl p-8 space-y-5">
+    <div>
+      <label class="block text-xs font-medium text-[#c9c4d8] mb-2 uppercase tracking-wider">Email</label>
+      <input id="loginEmail" type="email" class="w-full bg-[#201e28] border border-[#484555] rounded-xl px-4 py-3 text-[#e5e0ee] focus:border-[#c9bfff] outline-none transition-all text-sm" placeholder="you@university.edu"/>
+    </div>
+    <div>
+      <label class="block text-xs font-medium text-[#c9c4d8] mb-2 uppercase tracking-wider">Password</label>
+      <input id="loginPassword" type="password" class="w-full bg-[#201e28] border border-[#484555] rounded-xl px-4 py-3 text-[#e5e0ee] focus:border-[#c9bfff] outline-none transition-all text-sm" placeholder="••••••••"/>
+    </div>
+    <button id="loginBtn" class="w-full bg-[#c9bfff] text-[#2e009c] font-semibold py-3.5 rounded-xl hover:bg-[#b8adff] transition-all hover:scale-[1.01] active:scale-[0.99] shadow-lg flex items-center justify-center gap-2">
+      <span class="material-symbols-outlined text-[18px]">login</span> Sign In
+    </button>
+    <p id="loginError" class="text-red-400 text-xs text-center hidden"></p>
+  </div>
+
+  <!-- Register Form -->
+  <div id="registerForm" class="glass rounded-2xl p-8 space-y-5 hidden">
+    <div>
+      <label class="block text-xs font-medium text-[#c9c4d8] mb-2 uppercase tracking-wider">Full Name</label>
+      <input id="regName" type="text" class="w-full bg-[#201e28] border border-[#484555] rounded-xl px-4 py-3 text-[#e5e0ee] focus:border-[#c9bfff] outline-none transition-all text-sm" placeholder="Your name"/>
+    </div>
+    <div>
+      <label class="block text-xs font-medium text-[#c9c4d8] mb-2 uppercase tracking-wider">Email</label>
+      <input id="regEmail" type="email" class="w-full bg-[#201e28] border border-[#484555] rounded-xl px-4 py-3 text-[#e5e0ee] focus:border-[#c9bfff] outline-none transition-all text-sm" placeholder="you@university.edu"/>
+    </div>
+    <div>
+      <label class="block text-xs font-medium text-[#c9c4d8] mb-2 uppercase tracking-wider">Password <span class="text-[#484555]">(min 8 chars)</span></label>
+      <input id="regPassword" type="password" class="w-full bg-[#201e28] border border-[#484555] rounded-xl px-4 py-3 text-[#e5e0ee] focus:border-[#c9bfff] outline-none transition-all text-sm" placeholder="••••••••"/>
+    </div>
+    <button id="registerBtn" class="w-full bg-[#c9bfff] text-[#2e009c] font-semibold py-3.5 rounded-xl hover:bg-[#b8adff] transition-all hover:scale-[1.01] active:scale-[0.99] shadow-lg flex items-center justify-center gap-2">
+      <span class="material-symbols-outlined text-[18px]">person_add</span> Create Account
+    </button>
+    <p id="registerError" class="text-red-400 text-xs text-center hidden"></p>
+  </div>
+
+  <p class="text-center text-xs text-[#c9c4d8]/40 mt-6">
+    Your data is stored locally. API keys never leave your server.
+  </p>
+</div>
+
+<script src="aether-api.js"></script>
+<script>
+  // Redirect if already logged in
+  if (AetherAuth.isLoggedIn()) {
+    window.location.href = 'workspace_ultranote.ai_refined_theme.html';
+  }
+
+  function switchTab(tab) {
+    const isLogin = tab === 'login';
+    document.getElementById('loginForm').classList.toggle('hidden', !isLogin);
+    document.getElementById('registerForm').classList.toggle('hidden', isLogin);
+    document.getElementById('loginTab').className = `flex-1 py-2.5 rounded-xl text-sm font-semibold transition-all ${isLogin ? 'bg-[#917eff]/20 text-[#c9bfff]' : 'text-[#c9c4d8] hover:text-[#e5e0ee]'}`;
+    document.getElementById('registerTab').className = `flex-1 py-2.5 rounded-xl text-sm font-semibold transition-all ${!isLogin ? 'bg-[#917eff]/20 text-[#c9bfff]' : 'text-[#c9c4d8] hover:text-[#e5e0ee]'}`;
+  }
+
+  function showError(elemId, msg) {
+    const el = document.getElementById(elemId);
+    el.textContent = msg;
+    el.classList.remove('hidden');
+    setTimeout(() => el.classList.add('hidden'), 5000);
+  }
+
+  document.getElementById('loginBtn').addEventListener('click', async () => {
+    const btn = document.getElementById('loginBtn');
+    const restore = setButtonLoading(btn, 'Signing in...');
+    try {
+      await AetherAPI.login(
+        document.getElementById('loginEmail').value.trim(),
+        document.getElementById('loginPassword').value,
+      );
+      window.location.href = 'workspace_ultranote.ai_refined_theme.html';
+    } catch (e) {
+      showError('loginError', e.message);
+    } finally { restore(); }
+  });
+
+  document.getElementById('registerBtn').addEventListener('click', async () => {
+    const btn = document.getElementById('registerBtn');
+    const restore = setButtonLoading(btn, 'Creating account...');
+    try {
+      await AetherAPI.register(
+        document.getElementById('regName').value.trim(),
+        document.getElementById('regEmail').value.trim(),
+        document.getElementById('regPassword').value,
+      );
+      window.location.href = 'workspace_ultranote.ai_refined_theme.html';
+    } catch (e) {
+      showError('registerError', e.message);
+    } finally { restore(); }
+  });
+
+  // Enter key support
+  ['loginEmail','loginPassword'].forEach(id => {
+    document.getElementById(id).addEventListener('keydown', e => {
+      if (e.key === 'Enter') document.getElementById('loginBtn').click();
+    });
+  });
+  ['regName','regEmail','regPassword'].forEach(id => {
+    document.getElementById(id).addEventListener('keydown', e => {
+      if (e.key === 'Enter') document.getElementById('registerBtn').click();
+    });
+  });
+</script>
+</body>
+</html>

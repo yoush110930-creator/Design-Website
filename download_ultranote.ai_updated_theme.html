@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ultra.note - Download</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "secondary": "#c9bfff",
+                "on-background": "#e5e0ee",
+                "on-secondary-container": "#b7aaff",
+                "surface-container-low": "#1c1a24",
+                "surface-container-highest": "#35333e",
+                "primary-fixed": "#e5deff",
+                "secondary-fixed": "#e5deff",
+                "surface-container": "#201e28",
+                "on-secondary": "#2f148c",
+                "primary": "#c9bfff",
+                "surface-dim": "#14121b",
+                "secondary-fixed-dim": "#c9bfff",
+                "surface-variant": "#35333e",
+                "on-tertiary-fixed": "#2f1500",
+                "inverse-surface": "#e5e0ee",
+                "tertiary-container": "#d57a1e",
+                "on-error": "#690005",
+                "tertiary-fixed": "#ffdcc3",
+                "error": "#ffb4ab",
+                "on-primary-fixed-variant": "#441cc8",
+                "inverse-primary": "#5d3fe0",
+                "surface-container-lowest": "#0e0d16",
+                "on-primary-fixed": "#1a0063",
+                "on-primary": "#2e009c",
+                "tertiary": "#ffb77d",
+                "secondary-container": "#4632a2",
+                "surface-container-high": "#2b2932",
+                "on-surface": "#e5e0ee",
+                "on-primary-container": "#28008a",
+                "surface": "#14121b",
+                "outline-variant": "#484555",
+                "background": "#14121b",
+                "surface-bright": "#3a3842",
+                "primary-container": "#917eff",
+                "error-container": "#93000a",
+                "on-tertiary-container": "#432100",
+                "outline": "#928ea1",
+                "on-error-container": "#ffdad6",
+                "tertiary-fixed-dim": "#ffb77d",
+                "inverse-on-surface": "#312f39",
+                "surface-tint": "#c9bfff",
+                "on-secondary-fixed": "#1a0063",
+                "primary-fixed-dim": "#c9bfff",
+                "on-tertiary": "#4d2600",
+                "on-surface-variant": "#c9c4d8",
+                "on-secondary-fixed-variant": "#4632a2",
+                "on-tertiary-fixed-variant": "#6e3900"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "container-max": "1280px",
+                "unit": "8px",
+                "margin-tablet": "32px",
+                "margin-mobile": "20px",
+                "margin-desktop": "64px",
+                "gutter": "24px"
+        },
+        "fontFamily": {
+                "display-lg-mobile": [
+                        "Inter"
+                ],
+                "display-lg": [
+                        "Inter"
+                ],
+                "body-md": [
+                        "Inter"
+                ],
+                "headline-md": [
+                        "Inter"
+                ],
+                "body-lg": [
+                        "Inter"
+                ],
+                "label-sm": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "display-lg-mobile": [
+                        "32px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "1.4",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-sm": [
+                        "13px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "500"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        body {
+            background-color: #07030F;
+            color: theme('colors.on-background');
+            font-family: 'Inter', sans-serif;
+            background-image: radial-gradient(circle at 50% -20%, rgba(123, 97, 255, 0.15), transparent 60%);
+            background-attachment: fixed;
+        }
+        .glass-panel {
+            backdrop-filter: blur(40px);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 40px rgba(123, 97, 255, 0.2);
+            border-color: rgba(123, 97, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+<!-- TopNavBar (Shared Component) -->
+<nav class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-margin-desktop py-4 bg-white/5 backdrop-blur-2xl rounded-full mt-4 mx-auto w-[90%] max-w-container-max border border-outline-variant/30 shadow-[0_0_30px_rgba(123,97,255,0.15)] hidden md:flex">
+<a href="homepage_ultranote.ai_updated_theme.html" class="font-display-lg text-display-lg text-primary tracking-tighter hover:scale-105 active:scale-95 transition-transform cursor-pointer">Ultra.note</a>
+<div class="flex items-center gap-6">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105 active:scale-95" href="homepage_ultranote.ai_updated_theme.html">Features</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105 active:scale-95" href="collaborative_notes_ultranote.ai.html">Library</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105 active:scale-95" href="mind_maps_ultranote.ai.html">Templates</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105 active:scale-95" href="ai_tutor_ultranote.ai.html">AI Tutor</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all duration-300" onclick="window.location.href='workspace_ultranote.ai_refined_theme.html'">Log In</button>
+<button class="font-body-md text-body-md bg-[#7B61FF] text-[#F3F2FF] px-6 py-2 rounded-full hover:bg-primary-container transition-colors" onclick="window.location.href='workspace_ultranote.ai_refined_theme.html'">Get Started</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-[120px] pb-margin-desktop px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full flex flex-col items-center">
+<header class="text-center mb-16 max-w-2xl">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-background mb-4">Download Ultra.note</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Elevate your academic workflow across all your devices. Sync seamlessly, study everywhere.</p>
+</header>
+<!-- Bento Grid for Downloads -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter w-full">
+<!-- macOS Card -->
+<div class="glass-panel rounded-xl p-8 flex flex-col items-center text-center transition-all duration-300 glow-hover group relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<span class="material-symbols-outlined text-[64px] text-primary mb-6" style="font-variation-settings: 'FILL' 0;">laptop_mac</span>
+<h3 class="font-headline-md text-headline-md text-on-background mb-2 relative z-10">macOS</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 relative z-10">Requires macOS 12.0 or later. Apple Silicon optimized.</p>
+<button class="mt-auto bg-[#7B61FF] text-[#F3F2FF] font-body-md text-body-md px-8 py-3 rounded-full hover:bg-primary-container transition-colors w-full relative z-10 flex items-center justify-center gap-2" onclick="window.location.href='download_ultranote.ai_updated_theme.html'">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">download</span>
+                    Download for Mac
+                </button>
+</div>
+<!-- Windows Card -->
+<div class="glass-panel rounded-xl p-8 flex flex-col items-center text-center transition-all duration-300 glow-hover group relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<span class="material-symbols-outlined text-[64px] text-primary mb-6" style="font-variation-settings: 'FILL' 0;">desktop_windows</span>
+<h3 class="font-headline-md text-headline-md text-on-background mb-2 relative z-10">Windows</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 relative z-10">Requires Windows 10 or 11 (64-bit).</p>
+<button class="mt-auto bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.1)] text-on-background font-body-md text-body-md px-8 py-3 rounded-full hover:bg-[rgba(255,255,255,0.1)] transition-colors w-full relative z-10 flex items-center justify-center gap-2" onclick="window.location.href='download_ultranote.ai_updated_theme.html'">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">download</span>
+                    Download for Windows
+                </button>
+</div>
+<!-- Linux Card -->
+<div class="glass-panel rounded-xl p-8 flex flex-col items-center text-center transition-all duration-300 glow-hover group relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<span class="material-symbols-outlined text-[64px] text-primary mb-6" style="font-variation-settings: 'FILL' 0;">terminal</span>
+<h3 class="font-headline-md text-headline-md text-on-background mb-2 relative z-10">Linux</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 relative z-10">Available as AppImage, Snap, and Flatpak.</p>
+<button class="mt-auto bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.1)] text-on-background font-body-md text-body-md px-8 py-3 rounded-full hover:bg-[rgba(255,255,255,0.1)] transition-colors w-full relative z-10 flex items-center justify-center gap-2" onclick="window.location.href='download_ultranote.ai_updated_theme.html'">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">download</span>
+                    Download for Linux
+                </button>
+</div>
+<!-- iOS Card (Coming Soon) -->
+<div class="glass-panel rounded-xl p-8 flex flex-col items-center text-center relative overflow-hidden md:col-span-1 lg:col-start-1 lg:col-span-1">
+<div class="absolute top-4 right-4 bg-[rgba(123,97,255,0.15)] text-primary font-label-sm text-label-sm px-3 py-1 rounded-full border border-primary/30">
+                    Coming Soon
+                </div>
+<span class="material-symbols-outlined text-[64px] text-outline-variant mb-6" style="font-variation-settings: 'FILL' 0;">smartphone</span>
+<h3 class="font-headline-md text-headline-md text-on-background mb-2">iOS / iPadOS</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">The perfect companion for your iPad and Apple Pencil.</p>
+<button class="mt-auto bg-transparent border border-outline-variant/50 text-outline-variant font-body-md text-body-md px-8 py-3 rounded-full w-full cursor-not-allowed" disabled="">
+                    Join Waitlist
+                </button>
+</div>
+<!-- Android Card (Coming Soon) -->
+<div class="glass-panel rounded-xl p-8 flex flex-col items-center text-center relative overflow-hidden md:col-span-1 lg:col-start-2 lg:col-span-1">
+<div class="absolute top-4 right-4 bg-[rgba(123,97,255,0.15)] text-primary font-label-sm text-label-sm px-3 py-1 rounded-full border border-primary/30">
+                    Coming Soon
+                </div>
+<span class="material-symbols-outlined text-[64px] text-outline-variant mb-6" style="font-variation-settings: 'FILL' 0;">phone_android</span>
+<h3 class="font-headline-md text-headline-md text-on-background mb-2">Android</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">Access your academic library on the go.</p>
+<button class="mt-auto bg-transparent border border-outline-variant/50 text-outline-variant font-body-md text-body-md px-8 py-3 rounded-full w-full cursor-not-allowed" disabled="">
+                    Join Waitlist
+                </button>
+</div>
+<!-- Web Access Card -->
+<div class="glass-panel rounded-xl p-8 flex flex-col items-center text-center transition-all duration-300 glow-hover group relative overflow-hidden md:col-span-2 lg:col-span-1 lg:col-start-3">
+<div class="absolute inset-0 bg-gradient-to-tl from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<span class="material-symbols-outlined text-[64px] text-secondary mb-6" style="font-variation-settings: 'FILL' 0;">public</span>
+<h3 class="font-headline-md text-headline-md text-on-background mb-2 relative z-10">Web App</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 relative z-10">Access your notes from any modern browser.</p>
+<button class="mt-auto text-primary font-body-md text-body-md hover:text-primary-container transition-colors relative z-10 flex items-center justify-center gap-2" onclick="window.location.href='workspace_ultranote.ai_refined_theme.html'">
+                    Open Web App
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="w-full py-margin-desktop px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-gutter bg-transparent border-t border-outline-variant/20 mt-auto">
+<a href="homepage_ultranote.ai_updated_theme.html" class="font-display-lg text-display-lg text-on-surface hover:text-primary transition-all duration-200 cursor-pointer">Ultra.note</a>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Research Documentation</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="support_ultranote.ai.html">Contact Support</a>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant text-center md:text-right">
+            © 2024 Ultra.note AI. Engineered for academic excellence.
+        </div>
+</footer>
+</body></html>

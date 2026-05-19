@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Visual Learning - Aether Academic</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-primary-container": "#28008a",
+                "surface-container-lowest": "#0e0d16",
+                "primary-fixed-dim": "#c9bfff",
+                "primary-fixed": "#e5deff",
+                "on-surface-variant": "#c9c4d8",
+                "on-tertiary-container": "#432100",
+                "on-surface": "#e5e0ee",
+                "surface-dim": "#14121b",
+                "on-tertiary-fixed-variant": "#6e3900",
+                "on-primary": "#2e009c",
+                "inverse-primary": "#5d3fe0",
+                "on-secondary-fixed": "#1a0063",
+                "on-background": "#e5e0ee",
+                "surface-bright": "#3a3842",
+                "inverse-on-surface": "#312f39",
+                "primary": "#c9bfff",
+                "background": "#14121b",
+                "tertiary-fixed": "#ffdcc3",
+                "on-tertiary-fixed": "#2f1500",
+                "inverse-surface": "#e5e0ee",
+                "surface-container-highest": "#35333e",
+                "outline-variant": "#484555",
+                "secondary-fixed": "#e5deff",
+                "tertiary": "#ffb77d",
+                "on-secondary": "#2f148c",
+                "on-error-container": "#ffdad6",
+                "secondary-fixed-dim": "#c9bfff",
+                "on-primary-fixed": "#1a0063",
+                "surface-container-high": "#2b2932",
+                "outline": "#928ea1",
+                "on-error": "#690005",
+                "surface-tint": "#c9bfff",
+                "on-tertiary": "#4d2600",
+                "error-container": "#93000a",
+                "on-secondary-container": "#b7aaff",
+                "tertiary-container": "#d57a1e",
+                "surface": "#14121b",
+                "on-primary-fixed-variant": "#441cc8",
+                "secondary": "#c9bfff",
+                "error": "#ffb4ab",
+                "surface-container-low": "#1c1a24",
+                "surface-container": "#201e28",
+                "surface-variant": "#35333e",
+                "primary-container": "#917eff",
+                "tertiary-fixed-dim": "#ffb77d",
+                "secondary-container": "#4632a2",
+                "on-secondary-fixed-variant": "#4632a2"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "unit": "8px",
+                "gutter": "24px",
+                "margin-mobile": "20px",
+                "margin-desktop": "64px",
+                "container-max": "1280px",
+                "margin-tablet": "32px"
+        },
+        "fontFamily": {
+                "label-sm": [
+                        "Inter"
+                ],
+                "display-lg-mobile": [
+                        "Inter"
+                ],
+                "display-lg": [
+                        "Inter"
+                ],
+                "body-md": [
+                        "Inter"
+                ],
+                "body-lg": [
+                        "Inter"
+                ],
+                "headline-md": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "label-sm": [
+                        "13px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "display-lg-mobile": [
+                        "32px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "1.4",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "500"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-surface');
+            background-image: none;
+        }
+        
+        .glass-panel {
+            background: theme('colors.surface-container');
+            border: 1px solid theme('colors.outline-variant');
+        }
+        
+        .glass-panel-glow {
+            background: theme('colors.surface-container');
+            border: 1px solid theme('colors.outline-variant');
+        }
+        
+        /* Progress indicator animation */
+        @keyframes pulse-glow {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+        
+        .progress-indicator {
+            background: linear-gradient(90deg, theme('colors.primary'), theme('colors.secondary'));
+            height: 3px;
+            animation: pulse-glow 3s infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex text-on-surface font-body-md bg-background">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-full py-8 px-4 gap-6 fixed left-0 top-0 w-64 bg-surface-container-low border-r border-outline-variant shadow-lg z-40">
+        <!-- Header -->
+        <div class="flex items-center gap-3 px-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-primary-container/20 flex items-center justify-center border border-outline-variant/30">
+                <img alt="Academic Workspace Logo" class="w-full h-full object-cover rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaAk6aGqMUjlQXCuGtP45u2kqeomqxkG2m9mzE72hYtkzA5TOhSNaUHqqsa21_0TCXW1fhHKyZQjwHwW-R6W_TkEmlwGhAZFrHZ0-49YSaBSLy2zL8x0NYi1OQ6RzjYPcQkyMrJ8Nmp59qVVjrTluqX0l9I39GUeYQViodkg9ArjIPMsDV8qnLsZ9wxuf9wgW_bjkptYIXcxrxkaWsvPJfEcm56natlUOMozRMH6t2CY6nLZUYnoNknqUoOLMlmIspSJkAu1v9gUBX"/>
+            </div>
+            <div>
+                <a href="homepage_ultranote.ai_updated_theme.html" class="font-headline-md text-headline-md text-on-surface text-sm tracking-tight hover:text-primary transition-colors">Aether Academic</a>
+                <p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Workspace</p>
+            </div>
+        </div>
+        <!-- CTA -->
+        <div class="px-2 mb-4">
+            <button class="w-full bg-primary text-on-primary font-label-sm text-label-sm py-3 rounded-lg hover:bg-primary/90 transition-colors shadow-sm">
+                New Research
+            </button>
+        </div>
+        <!-- Main Navigation -->
+        <ul class="flex-1 flex flex-col gap-2">
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="workspace_ultranote.ai_refined_theme.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+                    Workspace
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="ai_notes_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="description">description</span>
+                    Notes
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="quiz_generator_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="quiz">quiz</span>
+                    Quizzes
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="flashcards_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="style">style</span>
+                    Flashcards
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="collaborative_notes_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="library_books">library_books</span>
+                    Library
+                </a>
+            </li>
+        </ul>
+        <!-- Footer Navigation -->
+        <ul class="flex flex-col gap-1 border-t border-outline-variant pt-4">
+            <li>
+                <a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="support_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[18px]" data-icon="help">help</span>
+                    Help
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="homepage_ultranote.ai_updated_theme.html">
+                    <span class="material-symbols-outlined text-[18px]" data-icon="logout">logout</span>
+                    Logout
+                </a>
+            </li>
+        </ul>
+    </nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-64 w-full min-h-screen bg-background">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-16 bg-surface border-b border-outline-variant shadow-sm">
+        <div class="flex-1 flex items-center">
+            <!-- Search Placeholder -->
+            <div class="flex items-center gap-2 text-on-surface-variant w-64 px-4 py-2 rounded-full bg-surface-container border border-outline-variant focus-within:border-primary focus-within:text-on-surface transition-colors">
+                <span class="material-symbols-outlined text-sm">search</span>
+                <input class="bg-transparent border-none outline-none text-sm w-full font-body-md text-on-surface placeholder:text-on-surface-variant focus:ring-0 p-0" placeholder="Search analytics..." type="text"/>
+            </div>
+        </div>
+        <!-- Mobile Brand -->
+        <a href="homepage_ultranote.ai_updated_theme.html" class="md:hidden font-headline-md text-headline-md font-semibold text-on-surface hover:text-primary transition-colors">
+            Aether Academic
+        </a>
+        <div class="flex-1 flex items-center justify-end gap-4">
+            <button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+                <span class="material-symbols-outlined">notifications</span>
+            </button>
+            <button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+                <span class="material-symbols-outlined">settings</span>
+            </button>
+            <div class="w-8 h-8 rounded-full bg-surface-container overflow-hidden border border-outline-variant cursor-pointer ml-2">
+                <img alt="Student researcher profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV2f0Od8C-O6m-MRvKvRNH5fny_zpAUnrm_NVJIPmtKHYXQbvjUgyYC-TX9TL-kA4WknAss0q09MPFLQPot50AVswYmLZ3wlWtPRcELh1fKp0YLgrMB53A4M3Xlqp6XYz-MSBwBOKMt_XxkckcJsWeovaYDTqEVAQu-W5TnA5F3oPEwBjvVomAVNsIJhW2aD7mkDWMhXc3VMLkK-R661A1OR5D76ZPJtEpOxgmfDCR52KV00BC2Z16LAdXHcMeIcrnJ90mpskgV21D"/>
+            </div>
+        </div>
+    </header>
+<!-- Main Canvas -->
+<main class="flex-1 p-margin-mobile md:p-gutter lg:p-margin-desktop w-full max-w-container-max mx-auto">
+<!-- Page Header -->
+<div class="mb-8">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-1 rounded-full bg-surface-container-high text-primary font-label-sm text-[11px] uppercase tracking-wider border border-outline-variant">Learning Analytics</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Updated just now</span>
+</div>
+<h1 class="font-display-lg-mobile md:font-display-lg text-on-surface mb-2">Visual Knowledge Graph</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Track your conceptual understanding and study statistics across all active research topics.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-8 lg:grid-cols-12 gap-gutter">
+<!-- Main Knowledge Graph (Large Span) -->
+<div class="col-span-1 md:col-span-8 lg:col-span-8 glass-panel-glow rounded-xl flex flex-col overflow-hidden relative min-h-[400px]">
+<div class="absolute top-0 left-0 w-full progress-indicator"></div>
+<div class="p-6 flex justify-between items-start border-b border-outline-variant relative z-10 bg-surface-container">
+<div>
+<h3 class="font-headline-md text-[20px] text-on-surface">Concept Connections</h3>
+<p class="font-body-md text-sm text-on-surface-variant">Neural network synthesis of your notes</p>
+</div>
+<div class="flex gap-2">
+<button id="regenerateGraphBtn" class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors border border-outline-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="refresh">refresh</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors border border-outline-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="zoom_in">zoom_in</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors border border-outline-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="filter_list">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Abstract representation of a graph using CSS/HTML -->
+<div id="graphCanvas" class="flex-1 relative bg-surface-container-lowest p-6 overflow-hidden flex items-center justify-center">
+<!-- Decorative background grid -->
+<div class="absolute inset-0 opacity-[0.05]" style="background-image: linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px); background-size: 20px 20px;"></div>
+<!-- Nodes & Lines (Simplified Visual) -->
+<div class="relative w-full max-w-[500px] aspect-video">
+<!-- SVG Lines -->
+<svg id="graphSvg" class="absolute inset-0 w-full h-full" style="z-index: 1;">
+<line stroke="rgba(201, 191, 255, 0.4)" stroke-width="2" x1="20%" x2="50%" y1="30%" y2="50%"></line>
+<line stroke="rgba(201, 191, 255, 0.2)" stroke-width="1" x1="80%" x2="50%" y1="20%" y2="50%"></line>
+<line stroke="rgba(201, 191, 255, 0.6)" stroke-width="2" x1="30%" x2="50%" y1="70%" y2="50%"></line>
+<line stroke="rgba(201, 191, 255, 0.3)" stroke-width="1.5" x1="70%" x2="50%" y1="80%" y2="50%"></line>
+<line stroke="rgba(255, 255, 255, 0.1)" stroke-dasharray="4" stroke-width="1" x1="20%" x2="30%" y1="30%" y2="70%"></line>
+</svg>
+<!-- Central Node -->
+<div class="absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-surface-container-high border-2 border-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[28px]" data-icon="psychology">psychology</span>
+</div>
+<span class="mt-2 font-label-sm text-sm text-on-surface bg-surface-container border border-outline-variant px-2 py-0.5 rounded">Cognitive Load</span>
+</div>
+<!-- Peripheral Nodes -->
+<div class="absolute top-[30%] left-[20%] transform -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-surface-container border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="menu_book">menu_book</span>
+</div>
+<span class="mt-1 font-label-sm text-[11px] text-on-surface-variant">Working Memory</span>
+</div>
+<div class="absolute top-[20%] left-[80%] transform -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant text-[14px]" data-icon="article">article</span>
+</div>
+<span class="mt-1 font-label-sm text-[11px] text-on-surface-variant">Schema Theory</span>
+</div>
+<div class="absolute top-[70%] left-[30%] transform -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="neurology">neurology</span>
+</div>
+<span class="mt-1 font-label-sm text-[11px] text-on-surface">Extraneous Load</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Stats Panel (Right Sidebar on Desktop) -->
+<div class="col-span-1 md:col-span-4 lg:col-span-4 flex flex-col gap-gutter">
+<!-- Progress Chart Card -->
+<div class="glass-panel rounded-xl p-6 flex-1 flex flex-col bg-surface-container">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-[18px] text-on-surface">Retention Rate</h3>
+<span class="material-symbols-outlined text-primary" data-icon="monitoring">monitoring</span>
+</div>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-display-lg text-[36px] text-on-surface">84%</span>
+<span class="font-label-sm text-tertiary flex items-center"><span class="material-symbols-outlined text-[14px]" data-icon="trending_up">trending_up</span> 4.2%</span>
+</div>
+<!-- Simple CSS Bar Chart -->
+<div class="flex-1 flex items-end gap-2 h-32 mt-auto pt-4 border-b border-outline-variant relative">
+<!-- Y-axis subtle lines -->
+<div class="absolute top-0 w-full border-t border-outline-variant border-dashed"></div>
+<div class="absolute top-1/2 w-full border-t border-outline-variant border-dashed"></div>
+<!-- Bars -->
+<div class="flex-1 flex flex-col justify-end items-center group relative z-10">
+<div class="w-full bg-surface-variant rounded-t-sm h-[40%] group-hover:bg-primary/40 transition-colors"></div>
+<span class="text-[10px] text-on-surface-variant mt-2">M</span>
+</div>
+<div class="flex-1 flex flex-col justify-end items-center group relative z-10">
+<div class="w-full bg-surface-variant rounded-t-sm h-[65%] group-hover:bg-primary/40 transition-colors"></div>
+<span class="text-[10px] text-on-surface-variant mt-2">T</span>
+</div>
+<div class="flex-1 flex flex-col justify-end items-center group relative z-10">
+<div class="w-full bg-surface-variant rounded-t-sm h-[45%] group-hover:bg-primary/40 transition-colors"></div>
+<span class="text-[10px] text-on-surface-variant mt-2">W</span>
+</div>
+<div class="flex-1 flex flex-col justify-end items-center group relative z-10">
+<div class="w-full bg-surface-variant rounded-t-sm h-[80%] group-hover:bg-primary/40 transition-colors"></div>
+<span class="text-[10px] text-on-surface-variant mt-2">T</span>
+</div>
+<div class="flex-1 flex flex-col justify-end items-center group relative z-10">
+<div class="w-full bg-primary rounded-t-sm h-[92%]"></div>
+<span class="text-[10px] text-primary font-bold mt-2">F</span>
+</div>
+</div>
+</div>
+<!-- Study Focus Breakdown -->
+<div class="glass-panel rounded-xl p-6 bg-surface-container">
+<h3 class="font-headline-md text-[16px] text-on-surface mb-4">Focus Distribution</h3>
+<div class="space-y-4">
+<!-- Progress item 1 -->
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-on-surface font-label-sm">Methodology</span>
+<span class="text-on-surface-variant">45%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[45%] rounded-full"></div>
+</div>
+</div>
+<!-- Progress item 2 -->
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-on-surface font-label-sm">Literature Review</span>
+<span class="text-on-surface-variant">30%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[30%] rounded-full"></div>
+</div>
+</div>
+<!-- Progress item 3 -->
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-on-surface font-label-sm">Data Analysis</span>
+<span class="text-on-surface-variant">25%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[25%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

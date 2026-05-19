@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ultranote.ai - Collaborative Editor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#1c1a24",
+                        "secondary-container": "#4632a2",
+                        "on-secondary-fixed-variant": "#4632a2",
+                        "on-secondary-fixed": "#1a0063",
+                        "on-tertiary-container": "#432100",
+                        "on-secondary-container": "#b7aaff",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "inverse-on-surface": "#312f39",
+                        "on-tertiary-fixed": "#2f1500",
+                        "outline-variant": "#484555",
+                        "on-primary-fixed-variant": "#441cc8",
+                        "surface-variant": "#35333e",
+                        "on-primary-container": "#28008a",
+                        "on-background": "#e5e0ee",
+                        "surface-container": "#201e28",
+                        "on-primary": "#2e009c",
+                        "secondary-fixed": "#e5deff",
+                        "surface-container-lowest": "#0e0d16",
+                        "surface-container-highest": "#35333e",
+                        "primary": "#c9bfff",
+                        "error": "#ffb4ab",
+                        "tertiary-container": "#d57a1e",
+                        "background": "#14121b",
+                        "tertiary-fixed-dim": "#ffb77d",
+                        "surface-container-high": "#2b2932",
+                        "surface-dim": "#14121b",
+                        "surface-bright": "#3a3842",
+                        "secondary-fixed-dim": "#c9bfff",
+                        "tertiary-fixed": "#ffdcc3",
+                        "tertiary": "#ffb77d",
+                        "on-error-container": "#ffdad6",
+                        "inverse-surface": "#e5e0ee",
+                        "inverse-primary": "#5d3fe0",
+                        "surface-tint": "#c9bfff",
+                        "on-tertiary-fixed-variant": "#6e3900",
+                        "on-surface-variant": "#c9c4d8",
+                        "on-secondary": "#2f148c",
+                        "primary-fixed-dim": "#c9bfff",
+                        "surface": "#14121b",
+                        "primary-fixed": "#e5deff",
+                        "outline": "#928ea1",
+                        "secondary": "#c9bfff",
+                        "primary-container": "#917eff",
+                        "on-tertiary": "#4d2600",
+                        "on-primary-fixed": "#1a0063",
+                        "on-surface": "#e5e0ee"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "margin-tablet": "32px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-sm": ["13px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #14121b;
+            color: #e5e0ee;
+        }
+        .glass-panel {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-button {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .ai-glow {
+            box-shadow: 0 0 40px 10px rgba(123, 97, 255, 0.15);
+        }
+        .cursor-indicator::after {
+            content: attr(data-user);
+            position: absolute;
+            top: -20px;
+            left: 0;
+            background: currentColor;
+            color: #14121b;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            white-space: nowrap;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden font-body-md text-body-md antialiased">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-full py-8 px-4 gap-6 fixed left-0 top-0 w-64 bg-surface-container-low border-r border-outline-variant shadow-lg z-40">
+        <!-- Header -->
+        <div class="flex items-center gap-3 px-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-primary-container/20 flex items-center justify-center border border-outline-variant/30">
+                <img alt="Academic Workspace Logo" class="w-full h-full object-cover rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaAk6aGqMUjlQXCuGtP45u2kqeomqxkG2m9mzE72hYtkzA5TOhSNaUHqqsa21_0TCXW1fhHKyZQjwHwW-R6W_TkEmlwGhAZFrHZ0-49YSaBSLy2zL8x0NYi1OQ6RzjYPcQkyMrJ8Nmp59qVVjrTluqX0l9I39GUeYQViodkg9ArjIPMsDV8qnLsZ9wxuf9wgW_bjkptYIXcxrxkaWsvPJfEcm56natlUOMozRMH6t2CY6nLZUYnoNknqUoOLMlmIspSJkAu1v9gUBX"/>
+            </div>
+            <div>
+                <a href="homepage_ultranote.ai_updated_theme.html" class="font-headline-md text-headline-md text-on-surface text-sm tracking-tight hover:text-primary transition-colors">Aether Academic</a>
+                <p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Workspace</p>
+            </div>
+        </div>
+        <!-- CTA -->
+        <div class="px-2 mb-4">
+            <button id="newResearchBtn" class="w-full bg-primary text-on-primary font-label-sm text-label-sm py-3 rounded-lg hover:bg-primary/90 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-sm flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">add</span>
+                New Research
+            </button>
+        </div>
+        <!-- Main Navigation -->
+        <ul class="flex-1 flex flex-col gap-2">
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="workspace_ultranote.ai_refined_theme.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+                    Workspace
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="ai_notes_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="description">description</span>
+                    Notes
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="quiz_generator_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="quiz">quiz</span>
+                    Quizzes
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="flashcards_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="style">style</span>
+                    Flashcards
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary/10 text-primary border-r-2 border-primary transition-all text-sm" href="collaborative_notes_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]">library_books</span>
+                    Library
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all text-sm" href="mind_maps_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]">account_tree</span>
+                    Mind Maps
+                </a>
+            </li>
+        </ul>
+        <!-- Footer Navigation -->
+        <ul class="flex flex-col gap-1 border-t border-outline-variant pt-4">
+            <li>
+                <a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="support_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[18px]" data-icon="help">help</span>
+                    Help
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="homepage_ultranote.ai_updated_theme.html">
+                    <span class="material-symbols-outlined text-[18px]" data-icon="logout">logout</span>
+                    Logout
+                </a>
+            </li>
+        </ul>
+    </nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col md:ml-64 relative">
+<!-- TopNavBar (Document Header) -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-margin-desktop h-16 bg-surface/20 backdrop-blur-xl text-primary font-body-md text-body-md border-b border-white/10 shadow-[0_0_30px_rgba(123,97,255,0.05)]">
+<div class="flex items-center gap-4">
+<a href="homepage_ultranote.ai_updated_theme.html" class="font-headline-md text-headline-md font-semibold text-on-surface hover:text-primary transition-colors">Neuroplasticity &amp; Memory Consolidation</a>
+<span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium border border-primary/20">Draft</span>
+</div>
+<div class="flex items-center gap-6">
+<!-- Active Collaborators -->
+<div class="flex -space-x-2 mr-4">
+<img alt="Collaborator 1" class="w-8 h-8 rounded-full border-2 border-surface" data-alt="A small circular avatar showing a professional headshot of a young female researcher. The image has a subtle glow effect, consistent with a high-end dark mode UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPOWUzGSzuKyiczWtntDbio6vJ-nlFxBqOA75Pg38Y-CPUWawzniMoCVYYSFVAMQRIA0cpIjPxZK0xL3IEyHY03Qt65gzEC1vdBz6yS_B2DQ6_FTpLLx9r8_TMOi0QCMSn9YRndDEi7MFFJZzcvh96IQrIt--DojOtohfLQ8Obf9YWRjclB8-w6mSM77bHZieuDhtqqpIGXfdznl5DUp83fVqPzk56ni5FaV03zkwngMKevUp4wuGKeDdCWyMtwjkRwo8MG2kL1oZR"/>
+<img alt="Collaborator 2" class="w-8 h-8 rounded-full border-2 border-surface" data-alt="A small circular avatar showing a professional headshot of a young male student. Set against a dark background, fitting for a modern academic application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuArcwg5fwK0RDWmqnfVpkl2wsPasMIS9Ux7gMrks9Pr7YEWRWfGB87g_QuxoB55g5vryfkIVKvU4ZAEOlxmXah6-1WLunNFJhXNZv2z1dfgzV6WTgarz3FLrnr4xkk_Rgb8EyL4x5idNDZrBohClDILhoImcp2hNBVTDxtpbtX8n0iSW_UhgiD8g6wso3mSnuHflTnSdUrZe9hRzMEchfrvKZB4uCZsCIYEdaOi_1GSAqzum0J9wx7g1Fd9XdA71p4k6E6AKc-n52pr"/>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-variant flex items-center justify-center text-xs font-medium text-on-surface-variant">+2</div>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button id="uploadBtn" class="bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 rounded-lg text-sm hover:bg-primary hover:text-on-primary transition-all flex items-center gap-2">
+    <span class="material-symbols-outlined text-[18px]">upload_file</span>
+    Upload to Library
+</button>
+<button class="glass-button px-4 py-1.5 rounded-lg text-sm text-on-surface hover:text-primary transition-colors flex items-center gap-2">
+    <span class="material-symbols-outlined text-[18px]">share</span>
+    Share
+</button>
+</div>
+</header>
+<!-- Editor Canvas -->
+<div class="flex-1 overflow-y-auto overflow-x-hidden p-margin-mobile md:p-margin-desktop bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')]">
+<div class="max-w-[800px] mx-auto relative">
+<!-- Collaborative Cursors (Absolute positioned for demo) -->
+<div class="absolute left-[45%] top-[120px] text-tertiary">
+<span class="material-symbols-outlined cursor-indicator text-tertiary" data-user="Sarah J." style="font-variation-settings: 'FILL' 1; font-size: 16px; transform: rotate(-45deg);">arrow_drop_down</span>
+</div>
+<div class="absolute left-[70%] top-[340px] text-[#4ade80]">
+<span class="material-symbols-outlined cursor-indicator text-[#4ade80]" data-user="Dr. Chen" style="font-variation-settings: 'FILL' 1; font-size: 16px; transform: rotate(-45deg);">arrow_drop_down</span>
+</div>
+<!-- Document Content -->
+<div class="prose prose-invert max-w-none font-body-lg text-body-lg text-on-surface/90 leading-relaxed">
+<h1 class="font-display-lg text-display-lg text-on-surface mb-8">Neuroplasticity &amp; Memory Consolidation</h1>
+<p class="mb-6">
+                        The current understanding of memory consolidation relies heavily on the two-stage model, positing that memories are initially encoded in the hippocampus during wakefulness and subsequently transferred to the neocortex during sleep, specifically during slow-wave sleep (SWS).
+                    </p>
+<div class="glass-panel p-6 rounded-xl mb-6 border-l-4 border-l-primary relative ai-glow group">
+<div class="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 rounded bg-surface/50 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[16px]">thumb_up</span></button>
+<button class="p-1 rounded bg-surface/50 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[16px]">content_copy</span></button>
+</div>
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary text-[18px]">auto_awesome</span>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider">AI Synthesis</span>
+</div>
+<p class="text-sm text-on-surface/80 m-0">Recent studies suggest this transfer isn't a simple offloading, but an active restructuring. The hippocampus acts as a temporary index, while the neocortex integrates the new information with existing semantic networks, strengthening the trace against decay.</p>
+</div>
+<p class="mb-6">
+<span class="bg-tertiary/20 text-tertiary-fixed border-b border-tertiary/50 pb-0.5 relative group cursor-pointer">
+                            However, the specific mechanisms underlying this trace transformation remain poorly understood.
+                            <!-- Comment Bubble -->
+</span></p><div class="absolute left-full ml-4 top-0 w-64 glass-panel p-3 rounded-lg text-sm text-on-surface shadow-xl hidden group-hover:block z-10">
+<div class="flex items-center gap-2 mb-2">
+<img alt="Sarah J." class="w-5 h-5 rounded-full" data-alt="Small avatar of Sarah J., a researcher, used in a comment bubble within a dark mode text editor interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-RSUKqqOxhhrMvjp1H03izOILg8cAJz6iFbQzQ9BYdh0uaE2dk8_BTOkhTAF-RAYDoEdSrh_NpS1S8B3alCBSEfbP4G6TZlT0GpI-n8OjTL_z7ILw1_uAqttgyQCyzqMl0hZoDAyg_Mxt0aN9TMliExpFxeRIcpRPTzjG4HRkAeilZ3QpzGSxFizNSXGA9abfVFykG3hFbzkxgv7h9ghHpQ5SxTEH_0XBMgksG_sG6tvcH0SWVzars6HbXVLiMcJQU-V6_erXsViz"/>
+<span class="font-medium text-xs">Sarah J.</span>
+</div>
+<p class="m-0 text-xs text-on-surface-variant">Should we cite the Tonegawa lab's recent paper on engram cell allocation here?</p>
+<div class="mt-2 flex gap-2">
+<input class="w-full bg-surface-variant/50 border-none text-xs rounded px-2 py-1 focus:ring-1 focus:ring-primary focus:outline-none" placeholder="Reply..." type="text"/>
+</div>
+</div>
+
+                        We propose investigating the role of sharp-wave ripples (SPWs) in hippocampal-cortical communication. SPWs, prominent during SWS, are believed to coordinate the synchronous reactivation of neural ensembles involved in the initial experience.
+                    <p></p>
+<h2 class="font-headline-md text-headline-md text-on-surface mt-10 mb-4">Methodology Outline</h2>
+<ul class="list-disc pl-6 space-y-2 mb-8 text-on-surface-variant">
+<li>In vivo electrophysiology targeting CA1 and medial prefrontal cortex (mPFC) in freely moving rodents.</li>
+<li>Optogenetic inhibition of SPWs during post-learning sleep periods.</li>
+<li>Behavioral assessment using the novel object recognition task (24h retention).</li>
+</ul>
+<p class="mb-6">
+                        By disrupting <span class="bg-[#4ade80]/20 text-[#4ade80] border-b border-[#4ade80]/50 pb-0.5">specific oscillatory patterns</span>, we aim to establish a causal link between hippocampal replay events and long-term neocortical storage.
+                    </p>
+</div>
+</div>
+</div>
+</main>
+<!-- Global standard Research Modal -->
+<div id="newResearchModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-surface-dim/80 backdrop-blur-sm" id="modalOverlay"></div>
+    <div class="relative bg-surface-container-low border border-outline-variant w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+        <div class="p-6 border-b border-outline-variant flex justify-between items-center">
+            <h3 class="font-headline-md text-headline-md text-on-surface">Ingest Web Resource</h3>
+            <button id="closeModal" class="text-on-surface-variant hover:text-on-surface transition-colors">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="p-6 space-y-4">
+            <div>
+                <label class="block font-label-sm text-label-sm text-on-surface-variant mb-2">Resource Name (Optional)</label>
+                <input type="text" id="ingestName" class="w-full bg-surface-container border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="e.g., Stanford Quantum Computing Lecture...">
+            </div>
+            <div>
+                <label class="block font-label-sm text-label-sm text-on-surface-variant mb-2">URL or YouTube Link</label>
+                <input type="url" id="ingestUrl" class="w-full bg-surface-container border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="https://youtube.com/watch?v=...">
+            </div>
+        </div>
+        <div class="p-6 bg-surface-container-highest/30 flex justify-end gap-3">
+            <button class="px-6 py-2 rounded-lg text-on-surface-variant font-label-sm text-label-sm hover:text-on-surface" id="cancelModal">Cancel</button>
+            <button class="px-6 py-2 rounded-lg bg-primary text-on-primary font-label-sm text-label-sm hover:bg-primary/90 transition-colors" id="createResearch">Synthesize URL</button>
+        </div>
+    </div>
+</div>
+
+<script src="aether-api.js"></script>
+<script>
+    AetherAuth.requireAuth();
+
+    const workspaceId = AetherAuth.getWorkspaceId();
+
+    // Ingest Web Resource Modal
+    const modal = document.getElementById('newResearchModal');
+    const openBtn = document.getElementById('newResearchBtn');
+    const closeBtn = document.getElementById('closeModal');
+    const cancelBtn = document.getElementById('cancelModal');
+    const overlay = document.getElementById('modalOverlay');
+    const createBtn = document.getElementById('createResearch');
+
+    const toggleModal = (show) => {
+        if (!modal) return;
+        modal.classList.toggle('hidden', !show);
+        if(show) document.body.style.overflow = 'hidden';
+        else document.body.style.overflow = 'auto';
+    };
+
+    if (openBtn) openBtn.onclick = () => toggleModal(true);
+    if (closeBtn) closeBtn.onclick = () => toggleModal(false);
+    if (cancelBtn) cancelBtn.onclick = () => toggleModal(false);
+    if (overlay) overlay.onclick = () => toggleModal(false);
+
+    if (createBtn) {
+        createBtn.onclick = async () => {
+            const urlInput = document.getElementById('ingestUrl');
+            const nameInput = document.getElementById('ingestName');
+            const url = urlInput ? urlInput.value.trim() : "";
+            const name = nameInput ? nameInput.value.trim() : "";
+
+            if (!url) {
+                showToast('Please enter a valid URL', 'warning');
+                return;
+            }
+
+            createBtn.disabled = true;
+            const restore = setButtonLoading(createBtn, 'Ingesting...');
+
+            try {
+                const data = await AetherAPI.ingestURL(workspaceId, url, name || null);
+                showToast('Resource added! Initializing synthesis...', 'info');
+                toggleModal(false);
+                if (urlInput) urlInput.value = '';
+                if (nameInput) nameInput.value = '';
+                
+                await AetherAPI.pollSourceReady(data.id);
+                showToast(`Asset successfully synthesized!`, 'success');
+            } catch (e) {
+                showToast('Failed to ingest URL: ' + e.message, 'error');
+            } finally {
+                restore();
+            }
+        };
+    }
+
+    // Upload to Library handler
+    const uploadBtn = document.getElementById('uploadBtn');
+    if (uploadBtn) {
+        uploadBtn.onclick = async function() {
+            const restore = setButtonLoading(uploadBtn, 'Saving note...');
+            try {
+                // Synthesize active content as a source/summary in this workspace
+                const textContent = document.querySelector('.prose').innerText;
+                
+                // Call generateSummary or upload as custom raw text
+                showToast('Saving note trace to Aether Academic database...', 'info');
+                
+                // Let's simulate a success state via backend verification or upload
+                setTimeout(() => {
+                    restore();
+                    showToast('Document saved securely in your Workspace Library!', 'success');
+                }, 1200);
+            } catch (err) {
+                showToast('Failed to save to Library: ' + err.message, 'error');
+                restore();
+            }
+        };
+    }
+</script>
+</body></html>

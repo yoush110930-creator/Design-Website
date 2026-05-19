@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aether Academic - AI Tutor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#e5e0ee",
+                        "on-primary": "#2e009c",
+                        "inverse-surface": "#e5e0ee",
+                        "error-container": "#93000a",
+                        "tertiary": "#ffb77d",
+                        "secondary-container": "#4632a2",
+                        "on-surface-variant": "#c9c4d8",
+                        "surface-dim": "#14121b",
+                        "background": "#14121b",
+                        "on-secondary-fixed-variant": "#4632a2",
+                        "on-primary-fixed": "#1a0063",
+                        "on-tertiary-fixed-variant": "#6e3900",
+                        "tertiary-fixed-dim": "#ffb77d",
+                        "on-secondary": "#2f148c",
+                        "surface": "#14121b",
+                        "tertiary-container": "#d57a1e",
+                        "on-primary-fixed-variant": "#441cc8",
+                        "outline-variant": "#484555",
+                        "on-error": "#690005",
+                        "secondary-fixed-dim": "#c9bfff",
+                        "primary": "#c9bfff",
+                        "on-surface": "#e5e0ee",
+                        "inverse-primary": "#5d3fe0",
+                        "surface-container-highest": "#35333e",
+                        "tertiary-fixed": "#ffdcc3",
+                        "primary-fixed": "#e5deff",
+                        "surface-container-lowest": "#0e0d16",
+                        "on-error-container": "#ffdad6",
+                        "surface-bright": "#3a3842",
+                        "secondary-fixed": "#e5deff",
+                        "primary-fixed-dim": "#c9bfff",
+                        "surface-tint": "#c9bfff",
+                        "outline": "#928ea1",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed": "#1a0063",
+                        "secondary": "#c9bfff",
+                        "on-primary-container": "#28008a",
+                        "surface-variant": "#35333e",
+                        "primary-container": "#917eff",
+                        "on-tertiary-fixed": "#2f1500",
+                        "inverse-on-surface": "#312f39",
+                        "on-secondary-container": "#b7aaff",
+                        "on-tertiary-container": "#432100",
+                        "on-tertiary": "#4d2600",
+                        "surface-container-low": "#1c1a24",
+                        "surface-container": "#201e28",
+                        "surface-container-high": "#2b2932"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-tablet": "32px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "unit": "8px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "label-sm": ["13px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .glass-panel {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .ai-glow {
+            box-shadow: 0 0 40px rgba(145, 126, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md h-screen w-full overflow-hidden flex antialiased">
+<!-- SideNavBar (Shared Component) -->
+<nav class="hidden md:flex flex-col h-full py-8 px-4 gap-6 fixed left-0 top-0 w-64 bg-surface-container-low border-r border-outline-variant shadow-lg z-40">
+        <!-- Header -->
+        <div class="flex items-center gap-3 px-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-primary-container/20 flex items-center justify-center border border-outline-variant/30">
+                <img alt="Academic Workspace Logo" class="w-full h-full object-cover rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaAk6aGqMUjlQXCuGtP45u2kqeomqxkG2m9mzE72hYtkzA5TOhSNaUHqqsa21_0TCXW1fhHKyZQjwHwW-R6W_TkEmlwGhAZFrHZ0-49YSaBSLy2zL8x0NYi1OQ6RzjYPcQkyMrJ8Nmp59qVVjrTluqX0l9I39GUeYQViodkg9ArjIPMsDV8qnLsZ9wxuf9wgW_bjkptYIXcxrxkaWsvPJfEcm56natlUOMozRMH6t2CY6nLZUYnoNknqUoOLMlmIspSJkAu1v9gUBX"/>
+            </div>
+            <div>
+                <a href="homepage_ultranote.ai_updated_theme.html" class="font-headline-md text-headline-md text-on-surface text-sm tracking-tight hover:text-primary transition-colors">Aether Academic</a>
+                <p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Workspace</p>
+            </div>
+        </div>
+        <!-- CTA -->
+        <div class="px-2 mb-4">
+            <button id="newResearchBtn" class="w-full bg-primary text-on-primary font-label-sm text-label-sm py-3 rounded-lg hover:bg-primary/90 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-sm flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">add</span>
+                New Research
+            </button>
+        </div>
+        <!-- Main Navigation -->
+        <ul class="flex-1 flex flex-col gap-2">
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="workspace_ultranote.ai_refined_theme.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+                    Workspace
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="ai_notes_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="description">description</span>
+                    Notes
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="quiz_generator_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="quiz">quiz</span>
+                    Quizzes
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="flashcards_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="style">style</span>
+                    Flashcards
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all text-sm" href="collaborative_notes_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]">library_books</span>
+                    Library
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all text-sm" href="mind_maps_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]">account_tree</span>
+                    Mind Maps
+                </a>
+            </li>
+        </ul>
+        <!-- Footer Navigation -->
+        <ul class="flex flex-col gap-1 border-t border-outline-variant pt-4">
+            <li>
+                <a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="support_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[18px]" data-icon="help">help</span>
+                    Help
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="homepage_ultranote.ai_updated_theme.html">
+                    <span class="material-symbols-outlined text-[18px]" data-icon="logout">logout</span>
+                    Logout
+                </a>
+            </li>
+        </ul>
+    </nav>
+<!-- Main Application Canvas -->
+<main class="flex-1 ml-64 flex flex-col h-full relative">
+<!-- TopNavBar (Shared Component) -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-margin-desktop h-16 bg-surface border-b border-outline-variant shadow-sm">
+        <div class="flex-1 flex items-center">
+            <!-- Search Placeholder -->
+            <div class="flex items-center gap-2 text-on-surface-variant w-64 px-4 py-2 rounded-full bg-surface-container border border-outline-variant focus-within:border-primary focus-within:text-on-surface transition-colors">
+                <span class="material-symbols-outlined text-sm">search</span>
+                <input class="bg-transparent border-none outline-none text-sm w-full font-body-md text-on-surface placeholder:text-on-surface-variant focus:ring-0 p-0" placeholder="Search knowledge base..." type="text"/>
+            </div>
+        </div>
+        <!-- Mobile Brand -->
+        <a href="homepage_ultranote.ai_updated_theme.html" class="md:hidden font-headline-md text-headline-md font-semibold text-on-surface hover:text-primary transition-colors">
+            Aether Academic
+        </a>
+        <div class="flex-1 flex items-center justify-end gap-4">
+            <button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+                <span class="material-symbols-outlined">notifications</span>
+            </button>
+            <button class="text-on-surface-variant hover:text-primary transition-colors duration-200" onclick="window.location.href='settings_ultranote.ai.html'">
+                <span class="material-symbols-outlined">settings</span>
+            </button>
+            <div class="w-8 h-8 rounded-full bg-surface-container overflow-hidden border border-outline-variant cursor-pointer ml-2">
+                <img alt="Student researcher profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV2f0Od8C-O6m-MRvKvRNH5fny_zpAUnrm_NVJIPmtKHYXQbvjUgyYC-TX9TL-kA4WknAss0q09MPFLQPot50AVswYmLZ3wlWtPRcELh1fKp0YLgrMB53A4M3Xlqp6XYz-MSBwBOKMt_XxkckcJsWeovaYDTqEVAQu-W5TnA5F3oPEwBjvVomAVNsIJhW2aD7mkDWMhXc3VMLkK-R661A1OR5D76ZPJtEpOxgmfDCR52KV00BC2Z16LAdXHcMeIcrnJ90mpskgV21D"/>
+            </div>
+        </div>
+    </header>
+<!-- Workspace Content Area (Split: History Sidebar + Chat Canvas) -->
+<div class="flex-1 flex overflow-hidden">
+<!-- Slim Chat History Sidebar -->
+<aside class="w-72 border-r border-white/5 bg-surface-container-lowest/30 flex flex-col overflow-y-auto hidden lg:flex">
+<div class="p-4 border-b border-white/5">
+<h2 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Recent Sessions</h2>
+</div>
+<div class="flex flex-col p-2 gap-1">
+<button class="text-left px-3 py-3 rounded-lg bg-surface-container-low border border-white/5 flex flex-col gap-1">
+<span class="font-body-md text-body-md text-on-surface text-[14px] truncate">Quantum State Superposition</span>
+<span class="font-label-sm text-label-sm text-primary opacity-80 text-[11px]">Active</span>
+</button>
+<button class="text-left px-3 py-3 rounded-lg hover:bg-surface-container-low/50 border border-transparent transition-colors flex flex-col gap-1 opacity-70 hover:opacity-100">
+<span class="font-body-md text-body-md text-on-surface text-[14px] truncate">Thermodynamics: Entropy</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[11px]">Yesterday</span>
+</button>
+<button class="text-left px-3 py-3 rounded-lg hover:bg-surface-container-low/50 border border-transparent transition-colors flex flex-col gap-1 opacity-70 hover:opacity-100">
+<span class="font-body-md text-body-md text-on-surface text-[14px] truncate">Literature Review Synthesis</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[11px]">Oct 12</span>
+</button>
+<button class="text-left px-3 py-3 rounded-lg hover:bg-surface-container-low/50 border border-transparent transition-colors flex flex-col gap-1 opacity-70 hover:opacity-100" onclick="window.location.href='ai_notes_ultranote.ai.html'">
+<span class="font-body-md text-body-md text-on-surface text-[14px] truncate">Methodology Draft Notes</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[11px]">Oct 10</span>
+</button>
+</div>
+</aside>
+<!-- Main Chat Canvas -->
+<section class="flex-1 flex flex-col relative bg-background/50">
+<!-- Scrollable Thread -->
+<div class="flex-1 overflow-y-auto p-margin-desktop pb-32 flex flex-col gap-10 scroll-smooth">
+<!-- Top Academic Indicator -->
+<div class="flex justify-center w-full mb-4">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-primary text-[11px] tracking-widest uppercase">Physics Module Active</span>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex justify-end w-full">
+<div class="max-w-2xl bg-surface-container rounded-2xl rounded-tr-sm p-6 border border-white/5 shadow-lg">
+<p class="font-body-md text-body-md text-on-surface">
+                                I'm struggling to visualize how quantum superposition actually works in a physical system. Can you explain the core mechanism without relying entirely on the math?
+                            </p>
+</div>
+</div>
+<!-- AI Message (Glassmorphism & High-End Features) -->
+<div class="flex items-start gap-6 w-full max-w-4xl">
+<!-- AI Avatar -->
+<div class="w-10 h-10 rounded-full bg-primary-container/20 border border-primary/30 flex items-center justify-center shrink-0 ai-glow">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<!-- AI Content Glass Card -->
+<div class="flex-1 glass-panel rounded-2xl rounded-tl-sm p-8 flex flex-col gap-6 relative overflow-hidden">
+<!-- Progress Line Top -->
+<div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+                                Let's abstract the mathematics and focus on the conceptual model. The most crucial thing to unlearn is our classical intuition that an object must be in a definitive state at all times.
+                            </p>
+<!-- Concept Highlight Box -->
+<div class="bg-primary/5 border-l-4 border-primary p-5 rounded-r-xl my-2">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-[18px]">lightbulb</span>
+<h4 class="font-headline-md text-headline-md text-primary text-[16px]">Core Principle: Linear Combinations</h4>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-[15px]">
+                                    Superposition is not the system rapidly switching between states, nor is it a physical smearing of the object. It states that any two (or more) quantum states can be added together ("superposed") and the result will be another valid quantum state. 
+                                </p>
+</div>
+<p class="font-body-md text-body-md text-on-surface">
+                                To visualize this, consider how waves interact rather than how solid particles behave. Here is a conceptual breakdown:
+                            </p>
+<!-- Bulleted Explanation -->
+<ul class="flex flex-col gap-3 ml-2">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1 text-[16px]">radio_button_checked</span>
+<span class="font-body-md text-body-md text-on-surface-variant">
+<strong class="text-on-surface font-semibold">State Space:</strong> Imagine a sphere. In classical physics, a system is like a point on the north or south pole. In quantum mechanics, the system can exist as a point anywhere on the surface of the sphere.
+                                    </span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1 text-[16px]">radio_button_checked</span>
+<span class="font-body-md text-body-md text-on-surface-variant">
+<strong class="text-on-surface font-semibold">Measurement Collapse:</strong> The superposition persists until it interacts with a macroscopic system (measurement). At that instant, the complex probability wave "collapses" into a single, definitive classical state.
+                                    </span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1 text-[16px]">radio_button_checked</span>
+<span class="font-body-md text-body-md text-on-surface-variant">
+<strong class="text-on-surface font-semibold">Interference:</strong> Because superposed states act like waves, they can interfere with each other—amplifying certain probabilities and canceling out others before measurement occurs.
+                                    </span>
+</li>
+</ul>
+<!-- Embedded Diagram Container -->
+<div class="w-full mt-4 rounded-xl overflow-hidden border border-white/10 bg-surface-container-lowest relative group">
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 pointer-events-none opacity-60"></div>
+<img alt="A sleek, minimalist digital rendering illustrating quantum wave interference. The image features smooth, glowing neon purple and soft blue sine waves intersecting against a deep, dark grey void. The aesthetic is highly scientific, clean, and modern, using subtle glass-like transparencies where the waves overlap to demonstrate superposition in a dark-mode environment." class="w-full h-64 object-cover opacity-80 mix-blend-screen transition-transform duration-700 group-hover:scale-105" data-alt="A sleek, minimalist digital rendering illustrating quantum wave interference. The image features smooth, glowing neon purple and soft blue sine waves intersecting against a deep, dark grey void. The aesthetic is highly scientific, clean, and modern, using subtle glass-like transparencies where the waves overlap to demonstrate superposition in a dark-mode environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUobsaeDJtHVvWhWMQyY24nTZHK1DcRtSCMVh0m3N5IzONb93myq-VNb2FUlbb9iyoGQrmoVZh1KWqFlc-7aTl10KebBzA0tq0fU-uzcz5LGQ2BA6iazEFWJoNs_iiOz7dmhAztChKGKZ-k2qinq84e_-cDpE4KIdWWADqZVe5gfO34cbNUTrUglIPmXEVMp_6xNBtaL3NX7bkwVJwEDMDZTuAz_j0j7McU6VdlzM0ufMqtr6mG9Yz1Ne8Xb77wRl1UWt_8ld9xKTc"/>
+<div class="absolute bottom-3 right-3 z-20 px-3 py-1 bg-surface/80 backdrop-blur-md rounded-md border border-white/10">
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[10px] uppercase">Figure 1: Wave Interference Model</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Input Pill -->
+<div class="absolute bottom-margin-desktop left-1/2 transform -translate-x-1/2 w-[calc(100%-4rem)] max-w-3xl z-20">
+<div class="bg-surface-container/60 backdrop-blur-2xl border border-white/10 rounded-full p-2 flex items-center shadow-[0_10px_40px_rgba(0,0,0,0.5)] transition-all focus-within:border-primary/50 focus-within:bg-surface-container/80">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-colors shrink-0 ml-1">
+<span class="material-symbols-outlined text-[22px]">attach_file</span>
+</button>
+<input id="chatInput" class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface font-body-lg text-body-lg text-[15px] placeholder:text-on-surface-variant/40 px-4 h-12" placeholder="Ask a follow-up question or type '/' for commands..." type="text"/>
+<button id="sendButton" class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors shrink-0 mr-1">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">arrow_upward</span>
+</button>
+</div>
+<div class="text-center mt-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant/40 text-[11px]">Aether Academic AI can make mistakes. Verify important research.</span>
+</div>
+</div>
+</section>
+</div>
+</main>
+<script src="aether-api.js"></script>
+<script>
+    let currentChatId = null;
+    const workspaceId = AetherAuth.getWorkspaceId();
+    const chatThread = document.querySelector('.flex-1.overflow-y-auto');
+
+    function appendUserMessage(text) {
+        const div = document.createElement('div');
+        div.className = 'flex justify-end w-full';
+        div.innerHTML = `<div class="max-w-2xl bg-surface-container rounded-2xl rounded-tr-sm p-5 border border-white/5 shadow-lg"><p class="font-body-md text-body-md text-on-surface">${text.replace(/</g,'&lt;')}</p></div>`;
+        chatThread.appendChild(div);
+        chatThread.scrollTop = chatThread.scrollHeight;
+    }
+
+    function appendAIMessage(citations) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex items-start gap-6 w-full max-w-4xl';
+        const citationHTML = citations.length > 0
+            ? `<div class="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-white/5">${citations.map(c => `<span class="text-[11px] bg-primary/10 text-primary border border-primary/20 px-2 py-0.5 rounded-full">${c.source_name}</span>`).join('')}</div>`
+            : '';
+        wrapper.innerHTML = `
+            <div class="w-10 h-10 rounded-full bg-primary-container/20 border border-primary/30 flex items-center justify-center shrink-0" style="box-shadow:0 0 40px rgba(145,126,255,0.1)">
+                <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1">smart_toy</span>
+            </div>
+            <div class="flex-1 glass-panel rounded-2xl rounded-tl-sm p-8 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
+                <p id="ai-stream-${Date.now()}" class="font-body-md text-body-md text-on-surface leading-relaxed whitespace-pre-wrap"></p>
+                ${citationHTML}
+            </div>`;
+        chatThread.appendChild(wrapper);
+        chatThread.scrollTop = chatThread.scrollHeight;
+        return wrapper.querySelector('p');
+    }
+
+    async function sendMessage() {
+        const input = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendButton');
+        const message = input.value.trim();
+        if (!message) return;
+
+        input.value = '';
+        sendBtn.disabled = true;
+        sendBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]" style="animation:spin 1s linear infinite;display:inline-block">refresh</span>';
+
+        appendUserMessage(message);
+
+        let targetEl = null;
+        let citations = [];
+
+        await AetherAPI.streamChat(workspaceId, message, currentChatId, null, {
+            onMeta: (meta) => {
+                currentChatId = meta.chat_id;
+                citations = meta.citations || [];
+                targetEl = appendAIMessage(citations);
+            },
+            onDelta: (delta) => {
+                if (targetEl) {
+                    targetEl.textContent += delta;
+                    chatThread.scrollTop = chatThread.scrollHeight;
+                }
+            },
+            onDone: () => {
+                sendBtn.disabled = false;
+                sendBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]" style="font-variation-settings:\'FILL\' 1">arrow_upward</span>';
+            },
+            onError: (err) => {
+                if (!targetEl) targetEl = appendAIMessage([]);
+                targetEl.textContent = 'Error: ' + err;
+                sendBtn.disabled = false;
+                sendBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]" style="font-variation-settings:\'FILL\' 1">arrow_upward</span>';
+            }
+        });
+    }
+
+    document.getElementById('sendButton').addEventListener('click', sendMessage);
+    document.getElementById('chatInput').addEventListener('keydown', e => {
+        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+    });
+</script>
+
+<div id="newResearchModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-surface-dim/80 backdrop-blur-sm" id="modalOverlay"></div>
+    <div class="relative bg-surface-container-low border border-outline-variant w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+        <div class="p-6 border-b border-outline-variant flex justify-between items-center">
+            <h3 class="font-headline-md text-headline-md text-on-surface">Start New Research</h3>
+            <button id="closeModal" class="text-on-surface-variant hover:text-on-surface transition-colors">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="p-6 space-y-4">
+            <div>
+                <label class="block font-label-sm text-label-sm text-on-surface-variant mb-2">Topic or Query</label>
+                <input type="text" class="w-full bg-surface-container border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="e.g., Quantum Computing Fundamentals...">
+            </div>
+        </div>
+        <div class="p-6 bg-surface-container-highest/30 flex justify-end gap-3">
+            <button class="px-6 py-2 rounded-lg text-on-surface-variant font-label-sm text-label-sm hover:text-on-surface" id="cancelModal">Cancel</button>
+            <button class="px-6 py-2 rounded-lg bg-primary text-on-primary font-label-sm text-label-sm hover:bg-primary/90 transition-colors" id="createResearch">Initialize</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        const modal = document.getElementById('newResearchModal');
+        const openBtn = document.getElementById('newResearchBtn');
+        const closeBtn = document.getElementById('closeModal');
+        const cancelBtn = document.getElementById('cancelModal');
+        const overlay = document.getElementById('modalOverlay');
+        const createBtn = document.getElementById('createResearch');
+
+        const toggleModal = (show) => {
+            modal.classList.toggle('hidden', !show);
+            if(show) document.body.style.overflow = 'hidden';
+            else document.body.style.overflow = 'auto';
+        };
+
+        if (openBtn) openBtn.onclick = () => toggleModal(true);
+        if (closeBtn) closeBtn.onclick = () => toggleModal(false);
+        if (cancelBtn) cancelBtn.onclick = () => toggleModal(false);
+        if (overlay) overlay.onclick = () => toggleModal(false);
+
+        if (createBtn) {
+            createBtn.onclick = () => {
+                createBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">refresh</span> Starting...';
+                setTimeout(() => {
+                    toggleModal(false);
+                    createBtn.innerText = 'Initialize';
+                    window.location.href = 'workspace_ultranote.ai_refined_theme.html';
+                }, 1500);
+            };
+        }
+    })();
+</script>
+</body></html>

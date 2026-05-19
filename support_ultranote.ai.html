@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Support Center - Ultra.note</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#e5e0ee",
+                        "primary": "#c9bfff",
+                        "surface-container-high": "#2b2932",
+                        "on-secondary-fixed": "#1a0063",
+                        "secondary-fixed-dim": "#c9bfff",
+                        "primary-fixed-dim": "#c9bfff",
+                        "surface-container": "#201e28",
+                        "outline-variant": "#484555",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#14121b",
+                        "primary-container": "#917eff",
+                        "inverse-primary": "#5d3fe0",
+                        "on-surface-variant": "#c9c4d8",
+                        "on-tertiary-container": "#432100",
+                        "surface-variant": "#35333e",
+                        "inverse-surface": "#e5e0ee",
+                        "on-tertiary-fixed-variant": "#6e3900",
+                        "error-container": "#93000a",
+                        "on-primary": "#2e009c",
+                        "tertiary-fixed-dim": "#ffb77d",
+                        "tertiary": "#ffb77d",
+                        "surface-bright": "#3a3842",
+                        "surface-container-low": "#1c1a24",
+                        "primary-fixed": "#e5deff",
+                        "on-primary-container": "#28008a",
+                        "surface-container-highest": "#35333e",
+                        "tertiary-fixed": "#ffdcc3",
+                        "on-error": "#690005",
+                        "on-secondary": "#2f148c",
+                        "surface-container-lowest": "#0e0d16",
+                        "on-tertiary-fixed": "#2f1500",
+                        "secondary-container": "#4632a2",
+                        "surface-dim": "#14121b",
+                        "on-primary-fixed-variant": "#441cc8",
+                        "tertiary-container": "#d57a1e",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed": "#1a0063",
+                        "surface-tint": "#c9bfff",
+                        "on-surface": "#e5e0ee",
+                        "on-tertiary": "#4d2600",
+                        "outline": "#928ea1",
+                        "secondary": "#c9bfff",
+                        "inverse-on-surface": "#312f39",
+                        "on-secondary-fixed-variant": "#4632a2",
+                        "on-secondary-container": "#b7aaff",
+                        "secondary-fixed": "#e5deff",
+                        "background": "#14121b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px",
+                        "margin-tablet": "32px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-sm": ["13px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #14121b;
+            color: #e5e0ee;
+        }
+        .glass-panel {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow-effect {
+            box-shadow: 0 0 30px rgba(123, 97, 255, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md h-screen w-full overflow-hidden flex antialiased">
+    <!-- SideNavBar (Shared Component) -->
+    <nav class="hidden md:flex flex-col h-full py-8 px-4 gap-6 fixed left-0 top-0 w-64 bg-surface-container-low border-r border-outline-variant shadow-lg z-40">
+        <!-- Header -->
+        <div class="flex items-center gap-3 px-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-primary-container/20 flex items-center justify-center border border-outline-variant/30">
+                <img alt="Academic Workspace Logo" class="w-full h-full object-cover rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaAk6aGqMUjlQXCuGtP45u2kqeomqxkG2m9mzE72hYtkzA5TOhSNaUHqqsa21_0TCXW1fhHKyZQjwHwW-R6W_TkEmlwGhAZFrHZ0-49YSaBSLy2zL8x0NYi1OQ6RzjYPcQkyMrJ8Nmp59qVVjrTluqX0l9I39GUeYQViodkg9ArjIPMsDV8qnLsZ9wxuf9wxuf9wgW_bjkptYIXcxrxkaWsvPJfEcm56natlUOMozRMH6t2CY6nLZUYnoNknqUoOLMlmIspSJkAu1v9gUBX"/>
+            </div>
+            <div>
+                <a href="homepage_ultranote.ai_updated_theme.html" class="font-headline-md text-headline-md text-on-surface text-sm tracking-tight hover:text-primary transition-colors">Aether Academic</a>
+                <p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Workspace</p>
+            </div>
+        </div>
+        <!-- CTA -->
+        <div class="px-2 mb-4">
+            <button class="w-full bg-primary text-on-primary font-label-sm text-label-sm py-3 rounded-lg hover:bg-primary/90 transition-colors shadow-sm">
+                New Research
+            </button>
+        </div>
+        <!-- Main Navigation -->
+        <ul class="flex-1 flex flex-col gap-2">
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="workspace_ultranote.ai_refined_theme.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+                    Workspace
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="ai_notes_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="description">description</span>
+                    Notes
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="quiz_generator_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="quiz">quiz</span>
+                    Quizzes
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="flashcards_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="style">style</span>
+                    Flashcards
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="collaborative_notes_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="library_books">library_books</span>
+                    Library
+                </a>
+            </li>
+        </ul>
+        <!-- Footer Navigation -->
+        <ul class="flex flex-col gap-1 border-t border-outline-variant pt-4">
+            <li>
+                <a class="flex items-center gap-3 px-4 py-2 rounded-lg bg-primary/10 text-primary border-r-2 border-primary transition-all font-label-sm text-label-sm" href="support_ultranote.ai.html">
+                    <span class="material-symbols-outlined text-[18px]" data-icon="help">help</span>
+                    Help
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all font-label-sm text-label-sm" href="homepage_ultranote.ai_updated_theme.html">
+                    <span class="material-symbols-outlined text-[18px]" data-icon="logout">logout</span>
+                    Logout
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Application Canvas -->
+    <main class="flex-1 ml-64 flex flex-col h-full relative overflow-y-auto">
+        <!-- TopNavBar (Shared Component) -->
+        <header class="sticky top-0 z-50 flex justify-between items-center w-full px-margin-desktop h-16 bg-surface border-b border-outline-variant shadow-sm">
+            <div class="flex-1 flex items-center">
+                <!-- Search Placeholder -->
+                <div class="flex items-center gap-2 text-on-surface-variant w-64 px-4 py-2 rounded-full bg-surface-container border border-outline-variant focus-within:border-primary focus-within:text-on-surface transition-colors">
+                    <span class="material-symbols-outlined text-sm">search</span>
+                    <input class="bg-transparent border-none outline-none text-sm w-full font-body-md text-on-surface placeholder:text-on-surface-variant focus:ring-0 p-0" placeholder="Search knowledge base..." type="text"/>
+                </div>
+            </div>
+            <!-- Mobile Brand -->
+            <a href="homepage_ultranote.ai_updated_theme.html" class="md:hidden font-headline-md text-headline-md font-semibold text-on-surface hover:text-primary transition-colors">
+                Aether Academic
+            </a>
+            <div class="flex-1 flex items-center justify-end gap-4">
+                <button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+                    <span class="material-symbols-outlined">notifications</span>
+                </button>
+                <button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+                    <span class="material-symbols-outlined">settings</span>
+                </button>
+                <div class="w-8 h-8 rounded-full bg-surface-container overflow-hidden border border-outline-variant cursor-pointer ml-2">
+                    <img alt="Student researcher profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV2f0Od8C-O6m-MRvKvRNH5fny_zpAUnrm_NVJIPmtKHYXQbvjUgyYC-TX9TL-kA4WknAss0q09MPFLQPot50AVswYmLZ3wlWtPRcELh1fKp0YLgrMB53A4M3Xlqp6XYz-MSBwBOKMt_XxkckcJsWeovaYDTqEVAQu-W5TnA5F3oPEwBjvVomAVNsIJhW2aD7mkDWMhXc3VMLkK-R661A1OR5D76ZPJtEpOxgmfDCR52KV00BC2Z16LAdXHcMeIcrnJ90mpskgV21D"/>
+                </div>
+            </div>
+        </header>
+<!-- Main Content -->
+<main class="flex-grow pt-[120px] pb-margin-desktop px-margin-desktop max-w-container-max mx-auto w-full flex flex-col gap-16">
+<!-- Hero Search Section -->
+<section class="flex flex-col items-center text-center gap-6 max-w-3xl mx-auto w-full pt-16">
+<h1 class="font-display-lg text-display-lg text-on-surface">How can we help?</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Search our knowledge base or browse categories below.</p>
+<div class="w-full relative group mt-4">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-white/5 border-b border-white/10 focus:border-primary text-on-surface font-body-lg text-body-lg pl-12 pr-4 py-4 rounded-t-lg outline-none transition-all focus:glow-effect placeholder-outline" placeholder="Search for answers..." type="text"/>
+</div>
+</section>
+<!-- Bento Grid Layout for Categories & Contact -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter w-full">
+<!-- Quick Links / Popular Topics (Span 8) -->
+<div class="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-gutter">
+<a class="glass-panel rounded-xl p-6 flex flex-col gap-4 hover:border-primary/50 transition-colors group cursor-pointer" href="workspace_ultranote.ai_refined_theme.html">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">rocket_launch</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Getting Started</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Learn the basics and set up your academic workspace.</p>
+</a>
+<a class="glass-panel rounded-xl p-6 flex flex-col gap-4 hover:border-primary/50 transition-colors group cursor-pointer" href="homepage_ultranote.ai_updated_theme.html">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">smart_toy</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">AI Features</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Maximize the potential of the AI Tutor and synthesis tools.</p>
+</a>
+<a class="glass-panel rounded-xl p-6 flex flex-col gap-4 hover:border-primary/50 transition-colors group cursor-pointer" href="ai_notes_ultranote.ai.html">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">sync</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Sync &amp; Storage</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Managing your notes across devices and library organization.</p>
+</a>
+<a class="glass-panel rounded-xl p-6 flex flex-col gap-4 hover:border-primary/50 transition-colors group cursor-pointer" href="faq_ultranote.ai.html">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">build</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Troubleshooting</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Fix common issues and learn about system requirements.</p>
+</a>
+</div>
+<!-- Contact Support Card (Span 4) -->
+<div class="md:col-span-4 glass-panel rounded-xl p-8 flex flex-col justify-between relative overflow-hidden glow-effect border-primary/30">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-inverse-primary"></div>
+<div class="flex flex-col gap-6">
+<div class="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">support_agent</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Still need help?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Our support team is ready to assist you with complex academic integrations.</p>
+</div>
+</div>
+<button id="contactSupportBtn" class="mt-8 bg-primary text-on-primary w-full py-3 rounded-lg font-body-md text-body-md hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">mail</span>
+                    Contact Support
+                </button>
+</div>
+</section>
+<script>
+    document.getElementById('contactSupportBtn').addEventListener('click', function() {
+        const originalText = this.innerHTML;
+        this.innerHTML = '<span class="material-symbols-outlined animate-spin">refresh</span> Connecting...';
+        this.disabled = true;
+        
+        setTimeout(() => {
+            this.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Ticket Created';
+            this.classList.replace('bg-primary', 'bg-surface-container-highest');
+            this.classList.replace('text-on-primary', 'text-primary');
+            
+            setTimeout(() => {
+                this.innerHTML = originalText;
+                this.disabled = false;
+                this.classList.replace('bg-surface-container-highest', 'bg-primary');
+                this.classList.replace('text-primary', 'text-on-primary');
+            }, 3000);
+        }, 1500);
+    });
+</script>
+<!-- FAQ Section -->
+<section class="flex flex-col gap-8 w-full max-w-4xl mx-auto">
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-on-surface border-b border-outline-variant/30 pb-4">Frequently Asked Questions</h2>
+<div class="flex flex-col gap-4">
+<div class="glass-panel rounded-xl p-6 hover:bg-white/10 transition-colors cursor-pointer flex justify-between items-center group">
+<span class="font-body-lg text-body-lg text-on-surface">How do I import existing notes into Ultra.note?</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">expand_more</span>
+</div>
+<div class="glass-panel rounded-xl p-6 flex flex-col gap-4 border-primary/30 glow-effect">
+<div class="flex justify-between items-center cursor-pointer">
+<span class="font-body-lg text-body-lg text-primary">Is my research data private?</span>
+<span class="material-symbols-outlined text-primary">expand_less</span>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant pl-4 border-l-2 border-primary/30">
+                        Yes. Ultra.note employs end-to-end encryption for all user data. Your academic research, notes, and AI interactions are completely private and are never used to train generalized models outside your personal workspace.
+                    </div>
+</div>
+<div class="glass-panel rounded-xl p-6 hover:bg-white/10 transition-colors cursor-pointer flex justify-between items-center group">
+<span class="font-body-lg text-body-lg text-on-surface">Can I collaborate on documents with peers?</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">expand_more</span>
+</div>
+<div class="glass-panel rounded-xl p-6 hover:bg-white/10 transition-colors cursor-pointer flex justify-between items-center group">
+<span class="font-body-lg text-body-lg text-on-surface">What export formats are supported?</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">expand_more</span>
+</div>
+</div>
+</section>
+</main>
+<script src="aether-api.js"></script>
+<script>
+    AetherAuth.requireAuth();
+</script>
+</body></html>

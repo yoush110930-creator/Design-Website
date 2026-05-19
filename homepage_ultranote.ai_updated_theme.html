@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ultra.note AI - Academic Excellence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "secondary": "#c9bfff",
+                "on-background": "#e5e0ee",
+                "on-secondary-container": "#b7aaff",
+                "surface-container-low": "#1c1a24",
+                "surface-container-highest": "#35333e",
+                "primary-fixed": "#e5deff",
+                "secondary-fixed": "#e5deff",
+                "surface-container": "#201e28",
+                "on-secondary": "#2f148c",
+                "primary": "#c9bfff",
+                "surface-dim": "#14121b",
+                "secondary-fixed-dim": "#c9bfff",
+                "surface-variant": "#35333e",
+                "on-tertiary-fixed": "#2f1500",
+                "inverse-surface": "#e5e0ee",
+                "tertiary-container": "#d57a1e",
+                "on-error": "#690005",
+                "tertiary-fixed": "#ffdcc3",
+                "error": "#ffb4ab",
+                "on-primary-fixed-variant": "#441cc8",
+                "inverse-primary": "#5d3fe0",
+                "surface-container-lowest": "#0e0d16",
+                "on-primary-fixed": "#1a0063",
+                "on-primary": "#2e009c",
+                "tertiary": "#ffb77d",
+                "secondary-container": "#4632a2",
+                "surface-container-high": "#2b2932",
+                "on-surface": "#e5e0ee",
+                "on-primary-container": "#28008a",
+                "surface": "#14121b",
+                "outline-variant": "#484555",
+                "background": "#14121b",
+                "surface-bright": "#3a3842",
+                "primary-container": "#917eff",
+                "error-container": "#93000a",
+                "on-tertiary-container": "#432100",
+                "outline": "#928ea1",
+                "on-error-container": "#ffdad6",
+                "tertiary-fixed-dim": "#ffb77d",
+                "inverse-on-surface": "#312f39",
+                "surface-tint": "#c9bfff",
+                "on-secondary-fixed": "#1a0063",
+                "primary-fixed-dim": "#c9bfff",
+                "on-tertiary": "#4d2600",
+                "on-surface-variant": "#c9c4d8",
+                "on-secondary-fixed-variant": "#4632a2",
+                "on-tertiary-fixed-variant": "#6e3900"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "container-max": "1280px",
+                "unit": "8px",
+                "margin-tablet": "32px",
+                "margin-mobile": "20px",
+                "margin-desktop": "64px",
+                "gutter": "24px"
+        },
+        "fontFamily": {
+                "display-lg-mobile": [
+                        "Inter"
+                ],
+                "display-lg": [
+                        "Inter"
+                ],
+                "body-md": [
+                        "Inter"
+                ],
+                "headline-md": [
+                        "Inter"
+                ],
+                "body-lg": [
+                        "Inter"
+                ],
+                "label-sm": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "display-lg-mobile": [
+                        "32px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "1.4",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-sm": [
+                        "13px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "500"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        body { background-color: #07030F; color: theme('colors.on-background'); }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow-effect {
+            box-shadow: 0 0 40px rgba(123, 97, 255, 0.15);
+        }
+        .ai-progress-bar {
+            background: linear-gradient(90deg, #c9bfff, #c9bfff, #c9bfff);
+            background-size: 200% 100%;
+            animation: pulse-gradient 2s infinite linear;
+        }
+        @keyframes pulse-gradient {
+            0% { background-position: 100% 0; }
+            100% { background-position: -100% 0; }
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container bg-[#07030F]">
+<!-- TopNavBar (Generated from JSON) -->
+<nav class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-margin-desktop py-4 bg-white/5 backdrop-blur-2xl rounded-full mt-4 mx-auto w-[90%] max-w-container-max border border-outline-variant/30 shadow-[0_0_30px_rgba(123,97,255,0.15)]">
+<a href="homepage_ultranote.ai_updated_theme.html" class="font-display-lg text-display-lg text-primary tracking-tighter hover:scale-105 active:scale-95 transition-transform cursor-pointer">Ultra.note</a>
+<div class="hidden md:flex gap-gutter items-center font-body-md text-body-md">
+<a class="text-on-surface-variant hover:text-primary transition-all duration-300" href="homepage_ultranote.ai_updated_theme.html">Features</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-300" href="collaborative_notes_ultranote.ai.html">Library</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-300" href="mind_maps_ultranote.ai.html">Templates</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-300" href="ai_tutor_ultranote.ai.html">AI Tutor</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="font-body-md text-on-surface-variant hover:text-primary transition-colors" onclick="window.location.href='workspace_ultranote.ai_refined_theme.html'">Log In</button>
+<button class="bg-[#7B61FF] text-[#F3F2FF] px-6 py-2 rounded-full font-body-md hover:scale-105 transition-transform shadow-[0_0_15px_rgba(123,97,255,0.3)]" onclick="window.location.href='workspace_ultranote.ai_refined_theme.html'">Get Started</button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow pt-[120px] pb-margin-desktop px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full flex flex-col gap-[120px]">
+<!-- Hero Section -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center pt-16">
+<div class="md:col-span-6 flex flex-col gap-6 relative z-10">
+<div class="absolute -top-32 -left-32 w-96 h-96 bg-primary-container rounded-full blur-[120px] opacity-20 pointer-events-none"></div>
+<h1 class="font-display-lg-mobile md:font-display-lg text-on-background max-w-[600px]">
+                    Welcome to the best Note Taking AI tool
+                </h1>
+<p class="font-body-lg text-on-surface-variant max-w-[500px]">
+                    Change anything into notes, quizzes, flashcards, and study guides. Engineered for deep academic focus.
+                </p>
+<div class="flex flex-wrap gap-4 mt-4">
+<button class="bg-[#7B61FF] text-[#F3F2FF] px-8 py-3 rounded-full font-body-lg hover:scale-105 transition-transform glow-effect" onclick="window.location.href='workspace_ultranote.ai_refined_theme.html'">
+                        Start Studying
+                    </button>
+<button class="glass-panel text-on-background px-8 py-3 rounded-full font-body-lg hover:bg-white/10 transition-colors" onclick="window.location.href='homepage_ultranote.ai_updated_theme.html'">
+                        Explore Features
+                    </button>
+</div>
+</div>
+<div class="md:col-span-6 relative h-[600px] flex items-center justify-center">
+<div class="absolute inset-0 bg-gradient-to-tr from-[#14121b] via-[#201e28] to-[#2b2932] rounded-3xl border border-outline-variant/30 overflow-hidden glow-effect">
+<div class="h-1 w-full ai-progress-bar"></div>
+<div class="p-8 h-full flex flex-col gap-4 relative">
+<div class="absolute -right-10 top-20 glass-panel p-4 rounded-xl rotate-6 animate-[bounce_6s_infinite]">
+<span class="material-symbols-outlined text-primary mb-2">style</span>
+<div class="font-label-sm text-primary">Flashcard Generated</div>
+</div>
+<div class="absolute -left-10 bottom-32 glass-panel p-4 rounded-xl -rotate-3 animate-[bounce_5s_infinite_reverse]">
+<span class="material-symbols-outlined text-tertiary mb-2">quiz</span>
+<div class="font-label-sm text-tertiary">Quiz Ready</div>
+</div>
+<div class="glass-panel rounded-xl p-4 w-3/4 self-start mt-10">
+<div class="h-3 w-1/3 bg-outline-variant/50 rounded mb-3"></div>
+<div class="h-2 w-full bg-outline-variant/30 rounded mb-2"></div>
+<div class="h-2 w-5/6 bg-outline-variant/30 rounded"></div>
+</div>
+<div class="glass-panel rounded-xl p-4 w-3/4 self-end bg-primary-container/10 border-primary/30">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-sm">auto_awesome</span>
+<span class="font-label-sm text-primary">AI Synthesis</span>
+</div>
+<div class="h-2 w-full bg-primary/20 rounded mb-2"></div>
+<div class="h-2 w-4/5 bg-primary/20 rounded"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Section -->
+<section class="border-y border-outline-variant/20 py-12 flex flex-col md:flex-row justify-center items-center gap-12 md:gap-32">
+<div class="text-center">
+<div class="font-display-lg text-primary mb-2">50,000+</div>
+<div class="font-label-sm text-on-surface-variant uppercase tracking-wider">Students</div>
+</div>
+<div class="text-center">
+<div class="font-display-lg text-tertiary mb-2">1M+</div>
+<div class="font-label-sm text-on-surface-variant uppercase tracking-wider">Notes Synthesized</div>
+</div>
+<div class="text-center">
+<div class="font-display-lg text-primary mb-2">4.9/5</div>
+<div class="font-label-sm text-on-surface-variant uppercase tracking-wider">App Store Rating</div>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="flex flex-col gap-12">
+<div class="text-center max-w-[600px] mx-auto">
+<h2 class="font-headline-md text-on-background mb-4">Intelligent Study Modules</h2>
+<p class="font-body-md text-on-surface-variant">Everything you need to master your curriculum, powered by context-aware AI.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 auto-rows-[300px] gap-6">
+<!-- Large Feature Card -->
+<div class="md:col-span-8 glass-panel rounded-2xl p-8 relative overflow-hidden group hover:border-primary/50 transition-colors cursor-pointer" onclick="window.location.href='ai_notes_ultranote.ai.html'">
+<div class="absolute right-0 bottom-0 w-64 h-64 bg-primary/10 rounded-full blur-[60px]"></div>
+<div class="relative z-10 flex flex-col h-full justify-between">
+<div>
+<span class="material-symbols-outlined text-primary text-3xl mb-4">summarize</span>
+<h3 class="font-headline-md text-on-background mb-2">AI Note Taker</h3>
+<p class="font-body-md text-on-surface-variant max-w-md">Instantly transcribe and summarize lectures, extracting key concepts and generating structured notes.</p>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-primary/10 rounded-full font-label-sm text-primary">Transcription</span>
+<span class="px-3 py-1 bg-primary/10 rounded-full font-label-sm text-primary">Summary</span>
+</div>
+</div>
+</div>
+<!-- Small Feature Card 1 -->
+<div class="md:col-span-4 glass-panel rounded-2xl p-8 flex flex-col justify-between group hover:border-tertiary/50 transition-colors cursor-pointer" onclick="window.location.href='quiz_generator_ultranote.ai.html'">
+<div>
+<span class="material-symbols-outlined text-tertiary text-3xl mb-4">quiz</span>
+<h3 class="font-headline-md text-on-background mb-2">Quiz Generator</h3>
+<p class="font-body-md text-on-surface-variant">Test your knowledge with auto-generated quizzes based on your specific materials.</p>
+</div>
+</div>
+<!-- Small Feature Card 2 -->
+<div class="md:col-span-4 glass-panel rounded-2xl p-8 flex flex-col justify-between group hover:border-secondary/50 transition-colors cursor-pointer" onclick="window.location.href='flashcards_ultranote.ai.html'">
+<div>
+<span class="material-symbols-outlined text-secondary text-3xl mb-4">style</span>
+<h3 class="font-headline-md text-on-background mb-2">Smart Flashcards</h3>
+<p class="font-body-md text-on-surface-variant">Spaced repetition flashcards created instantly from any document.</p>
+</div>
+</div>
+<!-- Medium Feature Card -->
+<div class="md:col-span-8 glass-panel rounded-2xl p-8 relative overflow-hidden group hover:border-primary/50 transition-colors cursor-pointer" onclick="window.location.href='study_guide_ultranote.ai.html'">
+<div class="relative z-10 flex flex-col h-full justify-between">
+<div>
+<span class="material-symbols-outlined text-primary text-3xl mb-4">auto_stories</span>
+<h3 class="font-headline-md text-on-background mb-2">Comprehensive Study Guides</h3>
+<p class="font-body-md text-on-surface-variant max-w-md">Compile multiple sources into coherent, actionable study guides perfect for exam prep.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Generated from JSON) -->
+<footer class="w-full py-margin-desktop px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-gutter bg-surface border-t border-outline-variant/20 font-body-md text-body-md">
+<div class="font-display-lg text-display-lg text-on-surface transition-all duration-200">Ultra.note</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Research Documentation</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="support_ultranote.ai.html">Contact Support</a>
+</div>
+<div class="text-on-surface-variant text-sm">
+            © 2024 Ultra.note AI. Engineered for academic excellence.
+        </div>
+</footer>
+</body></html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Aether Academic - Settings</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c9bfff",
+                        "on-primary": "#2e009c",
+                        "surface": "#14121b",
+                        "surface-container": "#201e28",
+                        "surface-container-low": "#1c1a24",
+                        "on-surface": "#e5e0ee",
+                        "on-surface-variant": "#c9c4d8",
+                        "outline": "#928ea1",
+                        "outline-variant": "#484555",
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-surface text-on-surface antialiased flex">
+    <!-- SideNavBar (Shared Component) -->
+    <nav class="hidden md:flex flex-col h-full py-8 px-4 gap-6 fixed left-0 top-0 w-64 bg-surface-container-low border-r border-outline-variant shadow-lg z-40">
+        <div class="flex items-center gap-3 px-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-outline-variant/30">
+                <img alt="Logo" class="w-full h-full object-cover rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaAk6aGqMUjlQXCuGtP45u2kqeomqxkG2m9mzE72hYtkzA5TOhSNaUHqqsa21_0TCXW1fhHKyZQjwHwW-R6W_TkEmlwGhAZFrHZ0-49YSaBSLy2zL8x0NYi1OQ6RzjYPcQkyMrJ8Nmp59qVVjrTluqX0l9I39GUeYQViodkg9ArjIPMsDV8qnLsZ9wxuf9wgW_bjkptYIXcxrxkaWsvPJfEcm56natlUOMozRMH6t2CY6nLZUYnoNknqUoOLMlmIspSJkAu1v9gUBX"/>
+            </div>
+            <div>
+                <a href="workspace_ultranote.ai_refined_theme.html" class="font-bold text-sm tracking-tight hover:text-primary transition-colors">Aether Academic</a>
+                <p class="text-[11px] text-on-surface-variant opacity-70">Workspace Settings</p>
+            </div>
+        </div>
+        <ul class="flex-1 flex flex-col gap-2">
+            <li><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all text-sm" href="workspace_ultranote.ai_refined_theme.html"><span class="material-symbols-outlined text-[20px]">dashboard</span> Workspace</a></li>
+            <li><a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary/10 text-primary border-r-2 border-primary transition-all text-sm" href="settings_ultranote.ai.html"><span class="material-symbols-outlined text-[20px]">settings</span> Settings</a></li>
+        </ul>
+    </nav>
+
+    <main class="flex-1 md:ml-64 p-8 md:p-16 flex justify-center">
+        <div class="w-full max-w-2xl">
+            <header class="mb-12">
+                <h1 class="text-4xl font-bold mb-2">Settings</h1>
+                <p class="text-on-surface-variant">Configure your AI workspace and API integrations.</p>
+            </header>
+
+            <div class="space-y-8">
+                <!-- AI Configuration -->
+                <section class="glass-panel rounded-2xl p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="material-symbols-outlined text-primary">auto_awesome</span>
+                        <h2 class="text-xl font-semibold">AI Integration</h2>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">AI Provider</label>
+                            <select id="aiProvider" class="w-full bg-surface-container border border-outline-variant rounded-lg px-4 py-3 focus:border-primary outline-none transition-all">
+                                <option value="gemini">Google Gemini (Recommended Free Tier)</option>
+                                <option value="groq">Groq (High Speed Free Tier)</option>
+                                <option value="openai">OpenAI (Paid)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="block text-sm font-medium">API Key</label>
+                                <a href="https://aistudio.google.com/app/apikey" target="_blank" class="text-xs text-primary hover:underline">Get Free Gemini Key</a>
+                            </div>
+                            <input type="password" id="apiKey" class="w-full bg-surface-container border border-outline-variant rounded-lg px-4 py-3 focus:border-primary outline-none transition-all" placeholder="Enter your API key here...">
+                            <p class="mt-2 text-xs text-on-surface-variant italic">Your key is stored locally in your browser and never sent to our servers.</p>
+                        </div>
+
+                        <button id="saveSettings" class="w-full bg-primary text-on-primary py-3 rounded-lg font-semibold hover:bg-primary/90 transition-all shadow-lg">
+                            Save Configuration
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Workspace Preferences -->
+                <section class="glass-panel rounded-2xl p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="material-symbols-outlined text-primary">psychology</span>
+                        <h2 class="text-xl font-semibold">Workspace Intelligence</h2>
+                    </div>
+                    <div class="space-y-4">
+                        <label class="flex items-center justify-between cursor-pointer group">
+                            <span>Auto-Synthesize Uploads</span>
+                            <div class="relative w-12 h-6 bg-surface-container rounded-full border border-outline-variant transition-colors group-hover:border-primary">
+                                <div class="absolute left-1 top-1 w-4 h-4 bg-on-surface-variant rounded-full transition-all translate-x-6 bg-primary"></div>
+                            </div>
+                        </label>
+                        <label class="flex items-center justify-between cursor-pointer group">
+                            <span>Predictive Search</span>
+                            <div class="relative w-12 h-6 bg-surface-container rounded-full border border-outline-variant transition-colors group-hover:border-primary">
+                                <div class="absolute left-1 top-1 w-4 h-4 bg-on-surface-variant rounded-full transition-all translate-x-6 bg-primary"></div>
+                            </div>
+                        </label>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <script src="aether-api.js"></script>
+    <script>
+        AetherAuth.requireAuth();
+        // Load existing settings
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedKey = localStorage.getItem('AETHER_API_KEY');
+            const savedProvider = localStorage.getItem('AETHER_PROVIDER');
+            
+            if(savedKey) document.getElementById('apiKey').value = savedKey;
+            if(savedProvider) document.getElementById('aiProvider').value = savedProvider;
+        });
+
+        // Save settings
+        document.getElementById('saveSettings').onclick = () => {
+            const key = document.getElementById('apiKey').value;
+            const provider = document.getElementById('aiProvider').value;
+            
+            localStorage.setItem('AETHER_API_KEY', key);
+            localStorage.setItem('AETHER_PROVIDER', provider);
+            
+            const btn = document.getElementById('saveSettings');
+            btn.innerHTML = '<span class="flex items-center justify-center gap-2"><span class="material-symbols-outlined">check_circle</span> Saved Successfully</span>';
+            btn.classList.replace('bg-primary', 'bg-green-600');
+            btn.classList.replace('text-on-primary', 'text-white');
+            
+            setTimeout(() => {
+                window.location.href = 'workspace_ultranote.ai_refined_theme.html';
+            }, 1000);
+        };
+    </script>
+</body>
+</html>
